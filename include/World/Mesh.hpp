@@ -13,8 +13,6 @@ class Mesh{
 public:
   std::vector<Vector3f>v;
   std::vector<Vector3f>n;
-  ///@brief does triangle i have valid texture coordinates
-  std::vector<bool> hasTex;
   std::vector<Vector2f>tex;
   std::vector<Vec3i>texId;
   ///@brief triangles

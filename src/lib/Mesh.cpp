@@ -54,7 +54,6 @@ Mesh & Mesh::operator= (const Mesh& m)
   t = m.t;
   n = m.n;
   tex = m.tex;
-  hasTex = m.hasTex;
   texId = m.texId;
   glTexID = m.glTexID;
   return *this;
@@ -187,7 +186,6 @@ void Mesh::read_obj(std::ifstream & f)
           trig[jj] = vidx[ii+jj]-1;
           textureId[jj] = texIdx[ii+jj]-1;
         }
-        hasTex.push_back(hasTexture);
         t.push_back(trig);
         texId.push_back(textureId);
       }
