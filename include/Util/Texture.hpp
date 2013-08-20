@@ -1,7 +1,7 @@
 #ifndef TEXTURE_HPP
 #define TEXTURE_HPP
 
-#include "vecmath/Vector3f.h"
+#include "vecmath.h"
 ///@brief helper class that stores a texture and faciliates lookup
 ///assume 4byte RGBA image data
 class Texture{

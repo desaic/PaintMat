@@ -131,7 +131,8 @@ void Mesh::load_tex(const char * filename) {
                texture.getHeight(),  texture.getHeight(),
                0, GL_RGBA, GL_UNSIGNED_BYTE, texture.getBuf());
   printf("gl error %d\n",(int)glGetError());
-  printf("max size %d\n",(int)GL_MAX_TEXTURE_SIZE);
+  printf("tex size %d, max size %d\n",texture.getWidth(),
+      (int)GL_MAX_TEXTURE_SIZE);
 }
 
 void Mesh::read_obj(std::ifstream & f)
@@ -423,7 +424,7 @@ void Mesh::drawWire()
 
 void Mesh::draw(std::vector<Vector3f>&v)
 {
-  glDisable(GL_LIGHTING);
+  //glDisable(GL_LIGHTING);
   //glUseProgramObjectARB(prog);
   GLfloat specular[4]= {0.51f,0.51f,0.51f,1.0f};
   GLfloat ambient[4]= {0.3f,0.3f,0.3f,1.0f};
@@ -431,24 +432,20 @@ void Mesh::draw(std::vector<Vector3f>&v)
 
   glMaterialfv(GL_FRONT,GL_SPECULAR,specular);
   glMaterialfv(GL_FRONT,GL_AMBIENT,ambient);
-//  glMaterialfv(GL_FRONT,GL_DIFFUSE,diffuse);
+  //glMaterialfv(GL_FRONT,GL_DIFFUSE,diffuse);
   Vector3f mn,mx;
   BBox(v,mn,mx);
   glPushMatrix();
   mx = mx-mn;
-  //float scale = std::max(mx[0],mx[1]);
-  //scale = 0.05;//std::max(mx[2],scale);
-  //glScalef(1.0f/scale, 1.0f/scale, 1.0f/scale);
-  //glTranslatef(-mn[0],-mn[1],-mn[2]);
   GLfloat s=10;
-  glMaterialfv(GL_FRONT_AND_BACK,GL_SHININESS,&s);
+  glMaterialfv(GL_FRONT,GL_SHININESS,&s);
   if(texture.valid()) {
     glBindTexture(GL_TEXTURE_2D,glTexID);
   }else{
     glDisable(GL_TEXTURE_2D);
   }
   glBegin(GL_TRIANGLES);
-
+  glColor3f(1,1,1);
   for(unsigned int ii=0; ii<t.size(); ii++) {
     if(texture.valid() && tex.size()>0 && texId.size()>0) {
       glTexCoord2f(tex[texId[ii][0]][0],tex[texId[ii][0]][1]);

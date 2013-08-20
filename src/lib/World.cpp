@@ -6,5 +6,8 @@
  */
 #include "World/World.hpp"
 
-
-
+std::vector<double>
+World::getState()
+{
+  return std::vector<double>();
+}

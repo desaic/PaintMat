@@ -1,3 +1,6 @@
+#ifndef CAMERA_HPP
+#define CAMERA_HPP
+
 struct Camera{
   Camera(){
     for (int ii=0;ii<3;ii++){
@@ -14,3 +17,4 @@ struct Camera{
   double up[3];
 };
 
+#endif
