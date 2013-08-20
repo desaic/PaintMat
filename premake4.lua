@@ -13,7 +13,7 @@ project "PaintMat"
   language "C++"
   kind     "ConsoleApp"
   files  { "src/**.cpp" }
-  includedirs {"./include/","extern/include"}
+  includedirs {"./include/","extern/include","extern/include/Eigen"}
   --For windows
   --this directory should be changed to windows specific directory
   if os.is("Windows") then 

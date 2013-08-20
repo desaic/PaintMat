@@ -5,8 +5,7 @@
 #include <vector>
 #include <fstream>
 #include "Util/Texture.hpp"
-#include "vecmath.h"
-#include "Util/vec.h"
+#include "Eigen/Dense"
 #include "Util/glheader.hpp"
 
 class Mesh{
@@ -14,13 +13,13 @@ public:
   std::vector<Vector3f>v;
   std::vector<Vector3f>n;
   std::vector<Vector2f>tex;
-  std::vector<Vec3i>texId;
+  std::vector<Eigen::Vector3i>texId;
   ///@brief triangles
-  std::vector<Vec3i>t;
+  std::vector<Eigen::Vector3i>t;
 
   Mesh();
   Mesh(const std::vector<Vector3f>&_v,
-      const std::vector<Vec3i>&_t);
+      const std::vector<Eigen::Vector3i>&_t);
 
   Mesh(const char * filename,bool normalize);
   void load_mesh(const char * filename, bool normalize=true);

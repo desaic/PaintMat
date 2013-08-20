@@ -14,7 +14,7 @@
 #include <string.h>
 #include "Util/util.h"
 
-
+#include "vecmath.h"
 ///@brief is a point inside a box
 bool ptInBox(const Vector3f & mn, const Vector3f mx, const Vector3f & x)
 {
@@ -69,25 +69,25 @@ std::vector<Vector3f> CUBE_VERT={Vector3f (0,0,0),
     Vector3f (1, 1, 1),
     Vector3f (0, 1, 1)};
 
-std::vector<Vec3i>CUBE_TRIG={Vec3i(0,1,3),
-    Vec3i(1, 2, 3),
-    Vec3i(5, 0, 4),
-    Vec3i(5, 1, 0),
-    Vec3i(6, 1, 5),
-    Vec3i(6, 2, 1),
-    Vec3i(3, 2, 6),
-    Vec3i(3, 6, 7),
-    Vec3i(4, 0, 3),
-    Vec3i(3, 7, 4),
-    Vec3i(7, 5, 4),
-    Vec3i(7, 6, 5)};
+std::vector<Eigen::Vector3i>CUBE_TRIG={Eigen::Vector3i(0,1,3),
+    Eigen::Vector3i(1, 2, 3),
+    Eigen::Vector3i(5, 0, 4),
+    Eigen::Vector3i(5, 1, 0),
+    Eigen::Vector3i(6, 1, 5),
+    Eigen::Vector3i(6, 2, 1),
+    Eigen::Vector3i(3, 2, 6),
+    Eigen::Vector3i(3, 6, 7),
+    Eigen::Vector3i(4, 0, 3),
+    Eigen::Vector3i(3, 7, 4),
+    Eigen::Vector3i(7, 5, 4),
+    Eigen::Vector3i(7, 6, 5)};
 Mesh UNIT_CUBE(CUBE_VERT,CUBE_TRIG);
 
 Mesh::Mesh():v(0),t(0),
     glTexID(0){}
 
 Mesh::Mesh(const std::vector<Vector3f>&_v,
-    const std::vector<Vec3i>&_t):v(_v),t(_t),
+    const std::vector<Eigen::Vector3i>&_t):v(_v),t(_t),
     glTexID(0)
 {
   compute_norm();
@@ -179,7 +179,7 @@ void Mesh::read_obj(std::ifstream & f)
       }
       texIdx.resize(vidx.size());
       for(int ii = 0;ii<vidx.size()-2;ii++){
-        Vec3i trig, textureId;
+        Eigen::Vector3i trig, textureId;
         trig[0] = vidx[0]-1;
         textureId[0] = texIdx[0]-1;
         for (int jj = 1; jj < 3; jj++) {
@@ -541,7 +541,7 @@ void BBox(const Mesh & m, Vector3f & mn, Vector3f & mx)
 }
 
 
-bool is_nbr(const Vec3i & a, const Vec3i&b, int vert)
+bool is_nbr(const Eigen::Vector3i & a, const Eigen::Vector3i&b, int vert)
 {
   for (int ii=0; ii<3; ii++) {
 
