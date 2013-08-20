@@ -8,12 +8,12 @@ solution "PaintMat"
   configuration { "Release" }
     targetdir "bin/release"
     buildoptions{"-std=c++0x"}
- 
+  include("extern/vecmath")
 project "PaintMat"
   language "C++"
   kind     "ConsoleApp"
   files  { "src/**.cpp" }
-  includedirs {"./include/"}
+  includedirs {"./include/","extern/include"}
   --For windows
   --this directory should be changed to windows specific directory
   if os.is("Windows") then 
@@ -21,7 +21,7 @@ project "PaintMat"
   else
     links {"png", "GL","GLU","glut","gomp","m"}
   end
-  
+  links {"vecmath"}
   if os.is("macosx") then
     libdirs{"/opt/local/lib"}
     includedirs{"/opt/local/include"}
