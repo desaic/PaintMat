@@ -3,6 +3,6 @@
 class Element
 {
 public:
-  
+  virtual ~Element();
 };
 #endif
