@@ -1,5 +1,3 @@
-#include "util.h"
-
 struct Camera{
   Camera(){
     for (int ii=0;ii<3;ii++){
@@ -11,8 +9,8 @@ struct Camera{
     up[2] = 1;
   }
 
-  real_t eye[3];
-  real_t at[3];
-  real_t up[3];
+  double eye[3];
+  double at[3];
+  double up[3];
 };
 
