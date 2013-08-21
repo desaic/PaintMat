@@ -15,7 +15,7 @@ ElementHex::ShapeFunGrad(int ii,
 {
   Eigen::Vector3f xx = getLocalCoord(p,X);
   //min and max node
-  Eigen::Array X1, X2;
+  Eigen::Array3f X1, X2;
   X1 = X[GetNodeIndex(0)].array();
   X2 = X[GetNodeIndex(6)].array() - X1;
   X2 = -1.0/(4*X2);
@@ -87,7 +87,7 @@ ElementHex::getLocalCoord(const Eigen::Vector3f & p,
   N1 = X[GetNodeIndex(0)];
   N2 = X[GetNodeIndex(6)];
 
-  local = (2 * (X-N1).array() / (N2-N1).array() - 1).matrix();
+  local = (2 * (p-N1).array() / (N2-N1).array() - 1).matrix();
   return local;
 }
 

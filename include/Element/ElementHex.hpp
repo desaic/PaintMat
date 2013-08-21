@@ -15,8 +15,10 @@ class ElementHex: public Element
 {
 public:
   ElementHex();
+
   std::vector<float> InterpWeights(const Eigen::Vector3f & p,
         const std::vector<Eigen::Vector3f> & X);
+
   Eigen::Matrix3f GetDeformationGrad(const Eigen::Vector3f & p,
       const std::vector<Eigen::Vector3f> & X,
       const std::vector<Eigen::Vector3f> & u
@@ -25,6 +27,7 @@ public:
   Eigen::Vector3f ShapeFunGrad(int ii,
       const Eigen::Vector3f & p,
       const std::vector<Eigen::Vector3f> & X);
+
   virtual ~ElementHex();
 private:
   Eigen::Vector3f getLocalCoord(const Eigen::Vector3f & p,

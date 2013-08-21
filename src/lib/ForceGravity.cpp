@@ -5,8 +5,8 @@
  *      Author: desaic
  */
 
-#include "Element/ForceVolume.hpp"
-#include "Element/ForceGravity.hpp"
+#include "World/ForceVolume.hpp"
+#include "World/ForceGravity.hpp"
 
 Eigen::Vector3f
 ForceGravity::GetForce(const Eigen::Vector3f & X)
