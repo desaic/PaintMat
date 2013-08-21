@@ -22,6 +22,9 @@ public:
   virtual std::vector<float> InterpWeights(const Eigen::Vector3f & p,
       const std::vector<Eigen::Vector3f> & X)=0;
 
+  virtual Eigen::Vector3f ShapeFunGrad(int ii,
+       const Eigen::Vector3f & p,
+       const std::vector<Eigen::Vector3f> & X)=0;
   ///@brief Computes deformation gradient at p
   virtual Eigen::Matrix3f GetDeformationGrad(const Eigen::Vector3f & p,
       const std::vector<Eigen::Vector3f> & X,
@@ -33,7 +36,7 @@ public:
     return nodeIndices[elNodeIdx];
   }
 
-  std::vector<int> GetNodeIncides() const {
+  std::vector<int> GetNodeIndices() const {
     return nodeIndices;
   }
 

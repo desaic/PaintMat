@@ -14,7 +14,7 @@ class ForceVolume
 {
 public:
   ForceVolume();
-  virtual Eigen::Vector3f GetForce(const Eigen::Vector3f & X)=0;
+  virtual Eigen::Vector3f GetForce(const Eigen::Vector3f & p)=0;
   virtual ~ForceVolume();
 };
 
