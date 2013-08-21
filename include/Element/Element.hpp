@@ -5,19 +5,28 @@
 #include <vector>
 
 #include "Eigen/Dense"
-
+class ForceVolume;
 class Element
 {
 public:
   virtual ~Element();
 
-  ///@param X in reference space
-  virtual std::vector<float> InterpWeights(const Eigen::Vector3f & X,
-      const std::vector<Eigen::Vector3f> & nodes)=0;
+  virtual std::vector<Eigen::Vector3f>
+    GetNodalForces()=0;
 
-  void SetIndices(const std::vector<int> & indices){
-    nodeIndices = indices;
+  void addForce(ForceVolume * force){
+    forces.push_back(force);
   }
+
+  ///@param X and @param p in reference space
+  virtual std::vector<float> InterpWeights(const Eigen::Vector3f & p,
+      const std::vector<Eigen::Vector3f> & X)=0;
+
+  ///@brief Computes deformation gradient at p
+  virtual Eigen::Matrix3f GetDeformationGrad(const Eigen::Vector3f & p,
+      const std::vector<Eigen::Vector3f> & X,
+      const std::vector<Eigen::Vector3f> & u
+      )=0;
 
   int GetNodeIndex(int elNodeIdx) const {
     assert(elNodeIdx >= 0 && elNodeIdx < nodeIndices.size());
@@ -28,7 +37,13 @@ public:
     return nodeIndices;
   }
 
+
+  void SetIndices(const std::vector<int> & indices){
+      nodeIndices = indices;
+    }
 private:
   std::vector<int> nodeIndices;
+  std::vector<ForceVolume *> forces;
+
 };
 #endif
