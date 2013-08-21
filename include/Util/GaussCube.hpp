@@ -9,7 +9,8 @@
 #define GAUSSCUBE_HPP_
 
 #include "Eigen/Dense"
-class Quadrature;
+#include "Util/Quadrature.hpp"
+
 class GaussCube: public Quadrature
 {
 public:

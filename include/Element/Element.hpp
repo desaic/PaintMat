@@ -6,13 +6,13 @@
 
 #include "Eigen/Dense"
 class ForceVolume;
+class MaterialModel;
 class Element
 {
 public:
-  virtual ~Element();
+  Element();
 
-  virtual std::vector<Eigen::Vector3f>
-    GetNodalForces()=0;
+  virtual ~Element();
 
   void addForce(ForceVolume * force){
     forces.push_back(force);
@@ -49,9 +49,12 @@ public:
   void SetIndices(const std::vector<int> & indices){
       nodeIndices = indices;
     }
+
+  MaterialModel * material;
+  std::vector<ForceVolume *> forces;
+
 private:
   std::vector<int> nodeIndices;
-  std::vector<ForceVolume *> forces;
 
 };
 #endif

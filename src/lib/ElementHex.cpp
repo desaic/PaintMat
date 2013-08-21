@@ -6,6 +6,10 @@
  */
 
 #include "Element/ElementHex.hpp"
+#include "Element/MaterialModel.hpp"
+#include "Util/GaussCube.hpp"
+#include "World/ForceVolume.hpp"
+
 #include "Eigen/Core"
 
 std::vector<Eigen::Vector3f>
@@ -15,6 +19,33 @@ ElementHex::GetNodalForces(
     )
 {
   std::vector<Eigen::Vector3f> f(8);
+  std::vector<float> weights;
+  std::vector<Eigen::Vector3f> points;
+
+  GaussCube quadrature;
+  quadrature.mn = X[GetNodeIndex(0)];
+  quadrature.mx = X[GetNodeIndex(6)];
+  quadrature.Get(weights,points);
+
+  std::vector<Eigen::Matrix3f> P(points.size());
+  for(size_t ii = 0; ii<points.size();ii++){
+    Eigen::Matrix3f F = GetDeformationGrad(points[ii],X,u);
+    P[ii] = material->GetPK1(F);
+  }
+
+  std::vector<Eigen::Vector3f> extForces(points.size());
+  for(size_t ii = 0; ii<extForces.size();ii++){
+    for(size_t jj = 0;jj<forces.size();jj++) {
+      extForces[ii] += forces[jj]->GetForce(points[ii]);
+    }
+  }
+
+  for(size_t ii = 0;ii<f.size();ii++){
+    for(size_t jj = 0; jj<points.size();jj++){
+      Eigen::Vector3f gradN = ShapeFunGrad(ii, points[jj], X);
+      f[ii] += weights[jj]* (P[jj]*gradN + extForces[jj]);
+    }
+  }
 
   return f;
 }

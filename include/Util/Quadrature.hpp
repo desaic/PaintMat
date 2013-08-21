@@ -8,6 +8,7 @@
 #ifndef QUADRATURE_HPP_
 #define QUADRATURE_HPP_
 #include "Eigen/Dense"
+
 class Quadrature
 {
 public:

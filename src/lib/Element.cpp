@@ -1,3 +1,5 @@
-#include "Element/Element.hpp" 
+#include "Element/Element.hpp"
+Element::Element():material(0)
+{}
 Element::~Element()
 {}
