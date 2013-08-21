@@ -8,7 +8,8 @@
 #include "Element/ElementHex.hpp"
 #include "Eigen/Core"
 
-std::vector<Eigen::Vector3f> GetNodalForces(
+std::vector<Eigen::Vector3f>
+ElementHex::GetNodalForces(
         const std::vector<Eigen::Vector3f> & X,
         const std::vector<Eigen::Vector3f> & u
     )

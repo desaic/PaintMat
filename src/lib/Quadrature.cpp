@@ -5,7 +5,7 @@
  *      Author: desaic
  */
 
-#include "Quadrature.hpp"
+#include "Util/Quadrature.hpp"
 
 Quadrature::Quadrature()
 {
