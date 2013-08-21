@@ -8,6 +8,16 @@
 #include "Element/ElementHex.hpp"
 #include "Eigen/Core"
 
+std::vector<Eigen::Vector3f> GetNodalForces(
+        const std::vector<Eigen::Vector3f> & X,
+        const std::vector<Eigen::Vector3f> & u
+    )
+{
+  std::vector<Eigen::Vector3f> f(8);
+
+  return f;
+}
+
 Eigen::Vector3f
 ElementHex::ShapeFunGrad(int ii,
     const Eigen::Vector3f & p,

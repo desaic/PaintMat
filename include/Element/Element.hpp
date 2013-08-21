@@ -31,6 +31,11 @@ public:
       const std::vector<Eigen::Vector3f> & u
       )=0;
 
+  virtual std::vector<Eigen::Vector3f> GetNodalForces(
+      const std::vector<Eigen::Vector3f> & X,
+      const std::vector<Eigen::Vector3f> & u
+  )=0;
+
   int GetNodeIndex(int elNodeIdx) const {
     assert(elNodeIdx >= 0 && elNodeIdx < nodeIndices.size());
     return nodeIndices[elNodeIdx];

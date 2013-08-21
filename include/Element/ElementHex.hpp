@@ -28,6 +28,11 @@ public:
       const Eigen::Vector3f & p,
       const std::vector<Eigen::Vector3f> & X);
 
+  std::vector<Eigen::Vector3f> GetNodalForces(
+        const std::vector<Eigen::Vector3f> & X,
+        const std::vector<Eigen::Vector3f> & u
+    );
+
   virtual ~ElementHex();
 private:
   Eigen::Vector3f getLocalCoord(const Eigen::Vector3f & p,
