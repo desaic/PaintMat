@@ -7,7 +7,7 @@
 
 #include "World/ForceVolume.hpp"
 
-ForceVolume::ForceVolume()
+ForceVolume::ForceVolume():element(0)
 {
 }
 

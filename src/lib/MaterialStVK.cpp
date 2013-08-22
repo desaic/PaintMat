@@ -21,7 +21,7 @@ MaterialStVK::GetEnergy(const Eigen::Matrix3f & F)
 {
   Eigen::Matrix3f I = Eigen::Matrix3f::Identity();
   Eigen::Matrix3f E = 0.5*(F.transpose()*F - I);
-  return mu*E.dot(E) + 0.5*lambda*E.trace();
+  return mu * E.squaredNorm() + 0.5*lambda*E.trace();
 }
 
 MaterialStVK::MaterialStVK():

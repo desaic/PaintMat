@@ -12,13 +12,9 @@
 
 #include "Eigen/Core"
 
-std::vector<Eigen::Vector3f>
-ElementHex::GetNodalForces(
-        const std::vector<Eigen::Vector3f> & X,
-        const std::vector<Eigen::Vector3f> & u
-    )
+float ElementHex::GetEnery(const std::vector<Eigen::Vector3f> & X,
+  const std::vector<Eigen::Vector3f> & u)
 {
-  std::vector<Eigen::Vector3f> f(8);
   std::vector<float> weights;
   std::vector<Eigen::Vector3f> points;
 
@@ -27,6 +23,45 @@ ElementHex::GetNodalForces(
   quadrature.mx = X[GetNodeIndex(6)];
   quadrature.Get(weights,points);
 
+  std::vector<float> energyDensity(points.size(), 0);
+
+  for(size_t ii = 0; ii<points.size();ii++){
+    Eigen::Matrix3f F = GetDeformationGrad(points[ii],X,u);
+    energyDensity[ii] = material->GetEnergy(F);
+  }
+
+  for(size_t jj = 0;jj<forces.size();jj++) {
+    forces[jj]->element = this;
+    for(size_t ii = 0; ii<points.size();ii++){
+      energyDensity[ii] += forces[jj]->GetEnergyDensity(points[ii]);
+    }
+  }
+
+  float energy=0;
+  for (size_t jj = 0; jj < points.size(); jj++) {
+    energy += weights[jj] * energyDensity[jj];
+  }
+
+  return energy;
+}
+
+std::vector<Eigen::Vector3f>
+ElementHex::GetNodalForces(
+        const std::vector<Eigen::Vector3f> & X,
+        const std::vector<Eigen::Vector3f> & u
+    )
+{
+  std::vector<float> weights;
+  std::vector<Eigen::Vector3f> points;
+
+  GaussCube quadrature;
+  quadrature.mn = X[GetNodeIndex(0)];
+  quadrature.mx = X[GetNodeIndex(6)];
+  quadrature.Get(weights,points);
+
+  std::vector<Eigen::Vector3f> f(points.size(),
+      Eigen::Vector3f::Zero());
+
   std::vector<Eigen::Matrix3f> P(points.size());
   for(size_t ii = 0; ii<points.size();ii++){
     Eigen::Matrix3f F = GetDeformationGrad(points[ii],X,u);
@@ -34,8 +69,9 @@ ElementHex::GetNodalForces(
   }
 
   std::vector<Eigen::Vector3f> extForces(points.size());
-  for(size_t ii = 0; ii<extForces.size();ii++){
-    for(size_t jj = 0;jj<forces.size();jj++) {
+  for(size_t jj = 0;jj<forces.size();jj++) {
+    forces[jj]->element = this;
+    for(size_t ii = 0; ii<extForces.size();ii++){
       extForces[ii] += forces[jj]->GetForce(points[ii]);
     }
   }
@@ -46,7 +82,6 @@ ElementHex::GetNodalForces(
       f[ii] += weights[jj]* (P[jj]*gradN + extForces[jj]);
     }
   }
-
   return f;
 }
 

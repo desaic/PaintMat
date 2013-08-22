@@ -11,11 +11,13 @@
 #include "Eigen/Dense"
 
 class ForceVolume;
+
 class ForceGravity: public ForceVolume
 {
 public:
   ForceGravity();
   Eigen::Vector3f GetForce(const Eigen::Vector3f & X);
+  float GetEnergyDensity(const Eigen::Vector3f & p);
   virtual ~ForceGravity();
   Eigen::Vector3f g;
 };

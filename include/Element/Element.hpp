@@ -55,7 +55,7 @@ public:
 
   MaterialModel * material;
   std::vector<ForceVolume *> forces;
-
+  float density;
 private:
   std::vector<int> nodeIndices;
 

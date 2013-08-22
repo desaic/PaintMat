@@ -32,7 +32,8 @@ public:
         const std::vector<Eigen::Vector3f> & X,
         const std::vector<Eigen::Vector3f> & u
     );
-
+  float GetEnery(const std::vector<Eigen::Vector3f> & X,
+        const std::vector<Eigen::Vector3f> & u);
   virtual ~ElementHex();
 private:
   Eigen::Vector3f getLocalCoord(const Eigen::Vector3f & p,
