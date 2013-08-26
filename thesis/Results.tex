@@ -1,11 +1,5 @@
 \chapter{Experiments}
 \label{chap:results}
-\begin{figure*}[t]
-\centering
-\includegraphics[width=0.95\linewidth]{figure/texture.pdf}
-\caption {The reducer-tuner model enables creating objects of arbitrary shapes with embedded textures.}
-\label{fig:textured}
-\end{figure*}
 \biglet{I}{n} order to evaluate capabilities of our system, I have implemented a number of existing translation processes.
 Furthermore, the ease with which different algorithm components can be combined enables the creation of two new translation processes.
 The first combination is an algorithm that can produce objects with desired refractive properties and an associated texture.
@@ -35,6 +29,13 @@ In this simple algorithm, the simulation is a table lookup using measured albedo
 
 \begin{figure*}[t]
 \centering
+\includegraphics[width=0.95\linewidth]{figure/texture.pdf}
+\caption {The reducer-tuner model enables creating objects of arbitrary shapes with embedded textures.}
+\label{fig:textured}
+\end{figure*}
+
+\begin{figure*}[t]
+\centering
 \includegraphics*[width = 0.5\linewidth]{figure/treeTexture.pdf}
 \caption{\emph{Reducer tree} for texture.}
 \label{fig:treeTexture}
@@ -42,13 +43,18 @@ In this simple algorithm, the simulation is a table lookup using measured albedo
 
 \section{Heterogeneous Subsurface Scattering}
 I have replicated the subsurface scattering process of Ha\v{s}an et al.~\shortcite{Hasan:2010:PRO} using a tree
-shown in Figure~\ref{fig:textureSubs}.
-The input to this algorithm is a 3D mesh along with subsurface-scattering profiles defined at a set of surface points. We use the same \emph{reducer tree} as in the texture example thereby simplifying the process configuration phase.
-The only difference is that I will allow each column to have four layers of varying thickness and material. 
-I will use a branch and bound optimization algorithm which has been modified to handle continuous parameters by allowing discrete increments.
-I will implement a bound estimate callback function specific to this problem.
+shown in Figure~\ref{fig:treeSubs}. A 3D printed chessboard is shown in Figure~\ref{fig:sub}.
+The input to this algorithm is a 3D mesh along with subsurface-scattering profiles defined
+at a set of surface points.
+We use the same \emph{reducer tree} as in the texture example thereby simplifying the process configuration phase.
+Since the \emph{reducer tree} adapts to the input geometry, I can apply the same marble material to arbitrary
+meshes such as the dome shown in Figure~\ref{fig:dome}.
+The only difference is that I allow each column to have four layers of varying thickness and material.
+I use a branch and bound optimization algorithm which has been modified to handle continuous parameters by allowing discrete increments.
+I implement a bound estimate callback function specific to this problem.
 Each column is optimized independently using the algorithm. 
-The simulation computes a scattering profile for a given stacking and the error metric compares the simulated and goal profiles using squared error.
+The simulation computes a scattering profile for a given stacking
+and the error metric compares the simulated and goal profiles using squared error.
 
 \begin{figure}
 \centering
@@ -67,8 +73,16 @@ The simulation computes a scattering profile for a given stacking and the error 
 \label{fig:sub}
 \end{figure}
 
+\begin{figure}
+\centering
+\includegraphics[width=0.45\linewidth]{figure/dome.png}
+\caption{
+	A marble dome produced by the subsurface scattering \emph{reducer tree}.}
+\label{fig:dome}
+\end{figure}
+
 \section{Goal-based Caustics:}
-I will configure two different processes for computing goal-based caustics (Figure~\ref{fig:caust2}). While they define exactly the same goal, they have very different \emph{reducer trees} and \emph{tuner networks}.
+I have configured two different processes for computing goal-based caustics (Figure~\ref{fig:caust2}). While they define exactly the same goal, they have very different \emph{reducer trees} and \emph{tuner networks}.
 The first process is based on the work of Papas et al.~\shortcite{Marios:2011}.
 It computes a set of micro-lenses which produce the desired caustic image. The image is pre-processed into a set of Gaussian distributions. Each distribution is matched with a microlens. The optimization applies simulated annealing to permute the location of these micro-lenses in order to construct a smooth surface. In the \emph{tuner network}, each \emph{tuner} is connected to its four neighbors. During the execution of an individual \emph{tuner}, the optimization algorithm makes a randomized decision about whether or not to swap its micro-lens with one of its neighbors based on smoothness of the surface. 
 The \emph{tuners} are executed many times until a user-specified convergence criterion is met. 
