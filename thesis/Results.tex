@@ -84,12 +84,22 @@ and the error metric compares the simulated and goal profiles using squared erro
 \section{Goal-based Caustics:}
 I have configured two different processes for computing goal-based caustics (Figure~\ref{fig:caust2}). While they define exactly the same goal, they have very different \emph{reducer trees} and \emph{tuner networks}.
 The first process is based on the work of Papas et al.~\shortcite{Marios:2011}.
-It computes a set of micro-lenses which produce the desired caustic image. The image is pre-processed into a set of Gaussian distributions. Each distribution is matched with a microlens. The optimization applies simulated annealing to permute the location of these micro-lenses in order to construct a smooth surface. In the \emph{tuner network}, each \emph{tuner} is connected to its four neighbors. During the execution of an individual \emph{tuner}, the optimization algorithm makes a randomized decision about whether or not to swap its micro-lens with one of its neighbors based on smoothness of the surface. 
+It computes a set of micro-lenses which produce the desired caustic image.
+The image is pre-processed into a set of Gaussian distributions.
+Each distribution is matched with a microlens.
+The optimization applies simulated annealing to permute the location of these micro-lenses
+in order to construct a smooth surface.
+In the \emph{tuner network}, each \emph{tuner} is connected to its four neighbors.
+During the execution of an individual \emph{tuner},
+the optimization algorithm makes a randomized decision
+about whether or not to swap its micro-lens with one of its neighbors based on smoothness of the surface.
 The \emph{tuners} are executed many times until a user-specified convergence criterion is met. 
-In the second process, based on the work of Finckh et al.~\shortcite{Finckh:2010}, I will use a \emph{B-spline node} to represent a smooth caustic surface.
+
+In the second process, based on the work of Finckh et al.~\shortcite{Finckh:2010},
+I use a \emph{B-spline node} to represent a smooth caustic surface.
 This is in contrast to the potentially discontinuous surface in the method above.
 The reduced parameters are the height of each spline control point.
-I will implement a simple caustics simulator for height fields.
+I implement a simple caustics simulator for height fields.
 The simulated image is compared to the goal image using mean squared error.
 
 \begin{figure}
