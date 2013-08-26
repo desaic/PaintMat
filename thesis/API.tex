@@ -1,12 +1,25 @@
-\section{Process Configuration}
+\chapter{Process Configuration}
 \label{sec:config}
-In this section we show each step of process configuration. At the same time we describe our implementation of the \emph{reducer tree} and \emph{tuner network} data structures.
+In this section I show each step of process configuration. At the same time I describe my implementation of the 
+\emph{reducer tree} and \emph{tuner network} data structures.
 
 \subsection{Defining the Reducer Tree}
-A \emph{reducer tree} can be constructed expediently using existing \emph{geometry} and \emph{material node} types. \emph{Reducer trees} are not restricted to use only existing node types. New node types can be added by extending the \verb|ReducerNode| class (see Figure~\ref{fig:node}). In particular, implementing a new \emph{geometry node} type requires providing the function \verb|getOutputIndex|. This function takes, as input, a 3D position and returns the \verb|id| of its child (Geometry or Material) that contains this 3D point. This function also computes a local coordinate for this child node. Performing computations in local coordinates allows us to abstract away the geometry of a given object. Implementing a new \verb|MaterialNode| type requires specifying the \verb|getMaterial| function which takes a 3D point and returns the material at this point in the local geometry coordinate system. Both types of nodes have an \verb|evaluate| function which is responsible for updating their internal states. This function is used by the \emph{tuner network} to modify the internal state of the nodes. As an example, we show a \emph{reducer tree} for performing texture mapping (see Figure~\ref{fig:red1}). We also provide the corresponding pseudo-code (see Algorithm~\ref{alg:ReducerTree}).
+A \emph{reducer tree} can be constructed expediently using existing \emph{geometry} and \emph{material node} types.
+\emph{Reducer trees} are not restricted to use only existing node types.
+New node types can be added by extending the \verb|ReducerNode| class (see Figure~\ref{fig:node}).
+In particular, implementing a new \emph{geometry node} type requires providing the function \verb|getOutputIndex|.
+This function takes, as input, a 3D position and returns the \verb|id| of its child (Geometry or Material)
+that contains this 3D point.
+This function also computes a local coordinate for this child node.
+Performing computations in local coordinates allows us to abstract away the geometry of a given object.
+Implementing a new \verb|MaterialNode| type requires specifying the \verb|getMaterial| function
+which takes a 3D point and returns the material at this point in the local geometry coordinate system.
+Both types of nodes have an \verb|evaluate| function which is responsible for updating their internal states.
+This function is used by the \emph{tuner network} to modify the internal state of the nodes.
+As an example, we show a \emph{reducer tree} for performing texture mapping (see Figure~\ref{fig:red1}).
+We also provide the corresponding pseudo-code (see Algorithm~\ref{alg:ReducerTree}).
 
 % Nodes also posses a \textit{getSearchSpace} virtual function which is used by the Tuner to retrieve the all tunable variables in the nodes subtree. In order to allow efficient computation of surface properties we provide each node with a \textit{getMesh} method which can return a triangular surface mesh of a subtree. Certain simulators require surface normal information to produce results and this can be efficiently computed from the provided surface mesh.
-
 
 \begin{figure}[h]
 \centering
@@ -14,7 +27,6 @@ A \emph{reducer tree} can be constructed expediently using existing \emph{geomet
 \caption{Abstract interface for Node and its two subclasses.}
 \label{fig:node}
 \end{figure}
-
 
 \begin{algorithm}
 \caption{Constructing a \emph{reducer tree} for texturing}
