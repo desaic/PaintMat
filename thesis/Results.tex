@@ -1,9 +1,10 @@
 \chapter{Experiments}
 \label{chap:results}
 \begin{figure*}[t]
-\includegraphics[width=\linewidth]{figure/TexturedExamples.pdf}
-\caption {The reducer-tuner model should enable creating objects of arbitrary shapes with embedded textures.}
-\label{fig:texturedExamples}
+\centering
+\includegraphics[width=0.95\linewidth]{figure/texture.pdf}
+\caption {The reducer-tuner model enables creating objects of arbitrary shapes with embedded textures.}
+\label{fig:textured}
 \end{figure*}
 \biglet{I}{n} order to evaluate capabilities of our system, I have implemented a number of existing translation processes.
 Furthermore, the ease with which different algorithm components can be combined enables the creation of two new translation processes.
@@ -15,7 +16,7 @@ The following paragraphs provide a detailed description of how the individual al
 %\autoref{fig:ReducerTreesAdditional}.
 
 \section{Spatially-varying Albedo}
-I have designed a Spec2Fab translator that allows 3D printing of textured models (Figure~\ref{fig:texturedExamples}).
+I have designed a Spec2Fab translator that allows 3D printing of textured models (Figure~\ref{fig:textured}).
 The \emph{reducer trees} and the \emph{tuner networks} for producing these results are presented in 
 \autoref{fig:treeTexture}.
 Being able to apply precisely specified spatially-varying albedo values to printed models is a crucial capability.
