@@ -61,30 +61,52 @@ Right: a tree for subsurface scattering properties.
 
 \section{Tuners and Tuning the Reducer Tree}
 I define \emph{tuners} as an abstract interface between a \emph{reducer node} and an optimization algorithm. 
-A \emph{reducer node} has parameters that control its space partitioning and material composition, e.g., \emph{stratum node} has a parameter which determines its thickness, \emph{column node} has parameters that control the width of columns.
+A \emph{reducer node} has parameters that control its space partitioning and material composition,
+e.g., \emph{stratum node} has a parameter which determines its thickness,
+\emph{column node} has parameters that control the width of columns.
 A \emph{tuner} is responsible for tuning these parameters to achieve a specified goal.
 A \emph{tuner} is comprised of an optimization scheme, an error metric, a simulator and a goal (\autoref{fig:tuner0}). 
-In order to create an optimal material assignment, \emph{tuner nodes} must be attached to the \emph{reducer tree}. The developer links each \emph{tuner} to a \emph{reducer node} in the \emph{reducer tree}. Each \emph{tuner} then traverses the \emph{reducer subtree} (rooted at this \emph{reducer node}) and constructs a parameter list by querying each visited \emph{reducer node}. The developer can label parameters as fixed or free. \emph{Tuner nodes} contain specific optimization routines (e.g., a quadratic program solver). The \emph{tuner node} then uses this routine to optimize its associated free parameters. During execution, additional information (e.g., parameters, errors, etc.) from neighboring Tuner Nodes can be obtained via the \emph{tuner network} (Section~\ref{sec:TunerNetwork}).  Tuner execution can be scheduled (again by the programmer) allowing both serial and parallel processing. 
-
-\autoref{fig:combine} (left) shows a simple example in which two \emph{tuners} are attached to sibling nodes in a \emph{reducer tree}. The first \emph{tuner} is responsible for \emph{layered} and \emph{void material nodes }while the second is responsible for several \emph{layered material nodes}.  
+In order to create an optimal material assignment, \emph{tuner nodes} must be attached to the \emph{reducer tree}.
+The developer links each \emph{tuner} to a \emph{reducer node} in the \emph{reducer tree}.
+Each \emph{tuner} then traverses the \emph{reducer subtree} (rooted at this \emph{reducer node})
+and constructs a parameter list by querying each visited \emph{reducer node}.
+The developer can label parameters as fixed or free. \emph{Tuner nodes} contain specific optimization routines
+(e.g., a quadratic program solver).
+The \emph{tuner node} then uses this routine to optimize its associated free parameters.
+During execution, additional information (e.g., parameters, errors, etc.) from neighboring Tuner Nodes
+can be obtained via the \emph{tuner network} (Section~\ref{sec:TunerNetwork}).
+Tuner execution can be scheduled (again by the programmer) allowing both serial and parallel processing.
 
 \begin{figure}[h]
 \centering
-\includegraphics[width=0.7\linewidth]{figure/tuner2.pdf}
+\includegraphics[width=0.6\linewidth]{figure/tuner2.pdf}
 \caption{A diagram of the \emph{tuner} workflow. Arrows indicate flow and type of information passed between the individual \emph{tuner} components.}
 \label{fig:tuner0}
 \end{figure}
 
-\section{Tuner Network}
-\label{sec:TunerNetwork}
-For many fabrication problems, \emph{tuners} should not act in isolation. For instance, an optimal material assignment at a given point depends on the material assignment in the neighborhood. Tuning the free parameters without taking into account this dependency usually yields suboptimal results. Therefore, I allow the \emph{tuners} to share information according to a user-specified graph structure. This allows my framework to interface with a wide range of existing graph-based optimization and inference algorithms. For example, Figure~\ref{fig:combine} (right) shows one of the \emph{tuner networks}.
-In this network, each node is connected to its four neighbors. In Figure~\ref{fig:ReducerTreesAdditional}, \emph{tuners} enclosed in dashed boxes are connected in this form. \emph{Tuner networks} do not always exhibit this regular connectivity. For instance, \emph{tuners} can be completely unconnected (\autoref{fig:combine} (left) or be organized into groups which feature intra- but not inter-group connections.
+\autoref{fig:tunerCon} shows a simple example in which two \emph{tuners} are attached to sibling nodes in a \emph{reducer tree}. The first \emph{tuner} is responsible for \emph{layered} and \emph{void material nodes }while the second is responsible for several \emph{layered material nodes}.  
 
 \begin{figure}[h]
 \centering
-\includegraphics[width=0.7\linewidth]{figure/tunedrt.pdf}
+\includegraphics[scale=0.45]{figure/tunerCon.pdf}
 \caption{ 
-	Left: Two \emph{tuners} attached to a \emph{reducer tree}. Each \emph{tuner} is responsible for tuning the nodes in its attached subtree (denoted by shapes with similarly colored outlines). 
-	Right: One example of \emph{tuner network} that will be used in experiments.}
-\label{fig:combine}
+  Two \emph{tuners} attached to a \emph{reducer tree}. Each \emph{tuner} is responsible for tuning the nodes in its attached subtree (denoted by shapes with similarly colored outlines).}
+\label{fig:tunerCon}
 \end{figure}
+
+\section{Tuner Network}
+\label{sec:TunerNetwork}
+For many fabrication problems, \emph{tuners} should not act in isolation. For instance, an optimal material assignment at a given point depends on the material assignment in the neighborhood. Tuning the free parameters without taking into account this dependency usually yields suboptimal results. Therefore, I allow the \emph{tuners} to share information according to a user-specified graph structure. This allows my framework to interface with a wide range of existing graph-based optimization and inference algorithms. For example, Figure~\ref{fig:tunerNet} shows one of the \emph{tuner networks}.
+
+\begin{figure}[h]
+\centering
+\includegraphics[scale=0.45]{figure/tunerNet.pdf}
+\caption{ 
+	One example of \emph{tuner network} that is used in experiments.}
+\label{fig:tunerNet}
+\end{figure}
+
+In this network, each node is connected to its four neighbors. In Figure~\ref{fig:ReducerTreesAdditional}, \emph{tuners} enclosed in dashed boxes are connected in this form.
+\emph{Tuner networks} do not always exhibit this regular connectivity.
+For instance, \emph{tuners} can be completely unconnected (\autoref{fig:tunerCon}) or be organized into groups which feature intra- but not inter-group connections.
+
