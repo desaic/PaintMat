@@ -72,7 +72,7 @@ and the error metric compares the simulated and goal profiles using squared erro
 \label{fig:sub}
 \end{figure}
 
-\begin{figure}
+\begin{figure}[h]
 \centering
 \includegraphics[width=0.75\linewidth]{figure/dome.pdf}
 \caption{
@@ -97,7 +97,7 @@ the optimization algorithm makes a randomized decision
 about whether or not to swap its micro-lens with one of its neighbors based on smoothness of the surface.
 The \emph{tuners} are executed many times until a user-specified convergence criterion is met. 
 
-\begin{figure}
+\begin{figure}[h]
 \centering
 \includegraphics[width=0.65\textwidth]{figure/facet.pdf}
 \caption {3D printed lens arrays that produce a caustic image of Einstein.
@@ -109,7 +109,7 @@ now in the public domain.
 \label{fig:facet}
 \end{figure}
 
-\begin{figure}
+\begin{figure}[h]
 \centering
 \includegraphics[scale=0.7]{figure/treeFacet.pdf}
 \caption {\emph{Reducer tree} for facet caustics.
@@ -124,7 +124,7 @@ The reduced parameters are the height of each spline control point.
 I implement a simple caustics simulator for height fields.
 The simulated image is compared to the goal image using mean squared error.
 
-\begin{figure}
+\begin{figure}[h]
 \centering
 \includegraphics[width=0.65\textwidth]{figure/spline.pdf}
 \caption {A smooth surface that produces a caustic image of Einstein.
@@ -134,7 +134,7 @@ Below we show convergence plots for the smooth surface optimization.
 \label{fig:spline}
 \end{figure}
 
-\begin{figure}
+\begin{figure}[h]
 \centering
 \includegraphics[scale=0.7]{figure/treeSpline.pdf}
 \caption {\emph{Reducer tree} for smooth caustics.
@@ -158,7 +158,7 @@ but with a different bound computation callback function.
 I use the mean squared distance between the simulated and the desired shapes as the error metric.
 I have designed a simple experiment to validate this process
 in which I set the goal of our optimization to be a given deformed state (\autoref{fig:book}).
-\begin{figure}
+\begin{figure}[h]
 \centering
 \includegraphics[scale=0.7]{figure/treeDeform.pdf}
 \caption {\emph{Reducer tree} for elastic behavior.
@@ -166,7 +166,7 @@ in which I set the goal of our optimization to be a given deformed state (\autor
 \label{fig:treeDeform}
 \end{figure}
 
-\begin{figure}
+\begin{figure}[h]
 \centering
 \includegraphics[width=0.65\linewidth]{figure/fig_sub.pdf}
 \caption {A 3D printed book with prescribed deformation behavior under load.
@@ -183,13 +183,13 @@ In this process, the input shape is divided into a thin shell and an inner volum
 (Figure~\ref{fig:treeTexDef}).
 I optimize for the deformation behavior and the texture independently due to the limitations of our current FEM simulator.
 As the outer shell is very thin, it has negligible influence on overall object deformation.
-\begin{figure}
+\begin{figure}[h]
 \centering
 \includegraphics[width=0.7\textwidth]{figure/globe.pdf}
 \caption {A miniature of Earth with prescribed deformation behavior.}
 \label{fig:globe}
 \end{figure}
-\begin{figure}
+\begin{figure}[h]
 \centering
 \includegraphics[scale=0.7]{figure/treeTexDef.pdf}
 \caption {\emph{Reducer tree} for combining texture and elastic behavior.
@@ -219,14 +219,25 @@ The top piece is tuned to produce an input image. The material in the top piece 
 \end{figure}
 
 \chapter{Discussion}
-Through the above series of experiments, I will confirm whether \emph{reducer tree} and \emph{tuner network} can allow us to reuse a large number of software components.
-In the extreme case, the subsurface scattering algorithm can be obtained by trivially adapting the same \emph{reducer tree} for texture mapping objects.
-The power of component reuse is further elucidated by the presence of \emph{column nodes} in most examples and by the reuse of optimization schemes (such as branch and bound) in multiple algorithms.
-The \emph{reducer tree} and \emph{tuner network} will make these similarities easy to observe and exploit.
+Through my series of experiments, The \emph{reducer tree} and \emph{tuner network}
+have allowed me to reuse a large number of software components.
+In the extreme case, I arrive at my subsurface scattering algorithm
+by trivially adapting the same \emph{reducer tree} for texture mapping objects.
+The power of component reuse is further elucidated by the presence of \emph{column nodes} in most examples
+and by the reuse of optimization schemes (such as branch and bound) in multiple algorithms.
+The \emph{reducer tree} and \emph{tuner network} make these similarities easy to observe and exploit.
 The only component whose reusability was not demonstrated in this proposal is simulation.
-In this work, I will aim to fabricate objects with a wide range of physical properties and this necessitates the use of a wide range of simulation algorithms. Finally, once a whole process is configured, it is independent of input geometry and goal parameters. For example, I can run the spatially-varying albedo process with different geometries and input textures
+In this work, I have aimed to fabricate objects with a wide range of physical properties
+and this necessitates the use of a wide range of simulation algorithms.
+Finally, once a whole process is configured, it is independent of input geometry and goal parameters.
+For example, I have run the spatially-varying albedo process with different geometries and input textures.
 
-The \emph{reducer-tuner model} is ideally suited for multi-material printing capable of producing objects with a wide range of different properties.
-In order to showcase these strengths, I will fabricated my examples for an Objet500 Connex -- a phase change inkjet printer that uses photopolymers with a wide range of optical and mechanical properties. Even though only two materials can be used and mixed within a single object, our framework has been proven to be very useful. 
-As the number of materials that can be printed simultaneously will grow, we expect the methodology presented here to increase in utility.
+The \emph{reducer-tuner model} is ideally suited for multi-material printing
+capable of producing objects with a wide range of different properties.
+In order to showcase these strengths, I have fabricated my examples for an Objet500 Connex --
+a phase change inkjet printer that uses photopolymers with a wide range of optical and mechanical properties.
+Even though only two materials can be used and mixed within a single object,
+my framework has been proven to be very useful. 
+As the number of materials that can be printed simultaneously will grow,
+I expect the methodology presented here to increase in utility.
 For other types of 3D printing technologies, Spec2Fab framework has a reduced use. In the case of 3D printing using a single, rigid material (e.g., fused filament fabrication or Stereolithography) the framework can be used to tune geometry of objects. For plaster-based 3D printers that produce full-color 3D prints, Spec2Fab framework can be employed to compute proper texturing of objects.

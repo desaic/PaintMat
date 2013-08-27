@@ -50,28 +50,32 @@ A key observation is that previous works share a common methodology and  a commo
 to form new material assignment algorithms.
 This suggests that one could find a small set of components that can be tied together to synthesize  advanced methods.
 I attempt to identify these components as well as a suitable model for their interaction.
-
-\begin{table*}[htp]
+\newpage
+\begin{table*}
 \centering
 \begin{tabular}{clll}
 \hline
 \textbf{Paper} & \textbf{Goal} & \textbf{Reduced Coordinates}  & \textbf{Optimization} \\
 \hline
-~\cite{Finckh:2010} & Optical (Caustics) & B-Spline Surface & Stochastic Approximation \\
-~\cite{Marios:2011} & Optical (Caustics) & Piecewise Constant Tiles & Simulated Annealing \\
+~\cite{Finckh:2010} & Optical (Caustics) & B-Spline Surface & SPSA\footnotemark \\
+~\cite{Marios:2011} & Optical (Caustics) & Piecewise Constant Tiles & SA\footnotemark \\
 ~\cite{Alexa:2010:RAI}& Optical (Relief) & Height Field & Gradient Descent\\
-~\cite{Weyrich:2009:FMF} &Optical (Reflectance)&Piecewise Constant Tiles& Simulated Annealing\\
-~\cite{Papas:2012} & Optical (Refraction) & Piecewise Constant Tiles & Simulated Annealing \\
+~\cite{Weyrich:2009:FMF} &Optical (Reflectance)&Piecewise Constant Tiles& SA\\
+~\cite{Papas:2012} & Optical (Refraction) & Piecewise Constant Tiles & SA \\
 ~\cite{Mitra:2009:SA}&Optical (Shadows)&Voxel Grid&Custom Discrete\\
 ~\cite{Baran:2012:MLA}&Optical (Shadows)& Layered Materials & Quadratic Program \\
-~\cite{Bermano:2012} & Optical (Shadows) & Height Field & Custom/Simulated Annealing \\
+~\cite{Bermano:2012} & Optical (Shadows) & Height Field & Custom/SA \\
 ~\cite{Dong:2010:FSS}&Optical (Subsurface) &Layered Materials&Conjugate Gradient\\
 ~\cite{Hasan:2010:PRO}& Optical (Subsurface) & Layered Materials & Branch and Bound\\
 ~\cite{Bickel:2010:DAF}& Mechanical (force) & Layered Materials  & Branch and Bound \\
 ~\cite{Bickel:2012} & Mechanical (shape) &  Height Field &  Newton-Raphson \\
-~\cite{sko:2012}& Mechanical (shape) & Triangle Mesh & Augmented Lagrangian Method \\
+~\cite{sko:2012}& Mechanical (shape) & Triangle Mesh & ALM\footnotemark \\
 \hline
 \end{tabular}
 \caption{The goal type, reduction type and optimization used by prior computational fabrication approaches.}
 \label{tb:algorithms}
 \end{table*}
+\addtocounter{footnote}{-3}
+\stepcounter{footnote}\footnotetext{Simultaneous perturbation stochastic approximation (SPSA).}
+\stepcounter{footnote}\footnotetext{Simulated annealing (SA).}
+\stepcounter{footnote}\footnotetext{Augmented Lagrangian method (ALM).}

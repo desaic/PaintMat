@@ -48,7 +48,16 @@ Recall that a \emph{tuner} consists of four components: a simulation, an error m
 
 \section{Establishing the \emph{Tuner Network}}
 
-The \emph{tuner network} is an undirected graph that describes connections between \emph{tuners}. \emph{Tuner nodes} store a list of their neighbors. Only neighboring \emph{tuners} are allowed to exchange information. In our current implementation, this is accomplished using a shared memory array. As an example, we show how to construct and initialize a \emph{tuner network} for a simple optimization scheme -- a Simulated Annealing algorithm~\cite{Van:1987} (see Algorithm~\ref{alg:TunerNetwork}). The \emph{tuner network} also requires a schedule that specifies in what order individual \emph{tuners} should be executed. This schedule is specified by the developer. Once the \emph{tuner network} is constructed, the process configuration phase is complete. We obtain a compiled executable that computes desired material assignment from an input specification.
+The \emph{tuner network} is an undirected graph that describes connections between \emph{tuners}.
+\emph{Tuner nodes} store a list of their neighbors.
+Only neighboring \emph{tuners} are allowed to exchange information.
+In our current implementation, this is accomplished using a shared memory array.
+As an example, we show how to construct and initialize a \emph{tuner network} for a simple optimization scheme --
+a Simulated Annealing algorithm~\cite{Van:1987} (see Algorithm~\ref{alg:TunerNetwork}).
+The \emph{tuner network} also requires a schedule that specifies in what order individual \emph{tuners} should be executed.
+This schedule is specified by the developer. Once the \emph{tuner network} is constructed,
+the process configuration phase is complete.
+We obtain a compiled executable that computes desired material assignment from an input specification.
 \begin{algorithm}
 \caption{Connecting and executing the \emph{tuner network}}
 \label{alg:TunerNetwork}

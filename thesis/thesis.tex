@@ -48,12 +48,9 @@
 \typeout{ * comment out the addcontentsline for Bibliography and Index}
 \typeout{*****************************************************************************}
 \typeout{}
-
+\floatpagestyle{plain}
 % use footer to denote draft
 %\cfoot{\scshape Draft: \today}
-
-% no headers on full-page floats
-\floatpagestyle{empty}
 
 % create new float type for algorithm displays
 \floatstyle{boxed}
@@ -68,8 +65,6 @@
 \newcommand{\algend}{
   \vspace*{-2pt}
 }
-
-\setlength{\leftmargini}{24pt} \setlength{\leftmarginii}{18pt}
 
 % colors used in some figures
 \definecolor{Black}{rgb}{0,0,0}
