@@ -17,12 +17,10 @@ My work is motivated by the recent research efforts in the computer graphics com
 
 The reduction-optimization structure suggests that it is possible to provide
 a more general abstraction mechanism for translating 3D models to printer and material-specific representations.
-In this research, I take the first step in achieving this goal.
+This key observation leads to the main contribution of my thesis:
 
-The main contribution of my thesis work can be summarized as follows:
-Spec2Fab processes use a similar structure
-Small set of common components
-A unified model for Spec2Fab translation
+\emph{Spec2Fab processes use a similar structure and a small set of common components.
+I take the first step in building a unified model for Spec2Fab translation.}
 
 Towards this end, I propose two novel data structures designed to aid the fabrication process:
 \begin{itemize}
@@ -32,5 +30,6 @@ Towards this end, I propose two novel data structures designed to aid the fabric
 My solution also provides an API for specifying the desired object, setting up the simulation, and defining parameters for the \emph{reducer tree} and \emph{tuner network}.
 In general, my framework simplifies the construction of new computational fabrication algorithms.
 More specifically, different components of the process can be easily replaced and other components easily reused. 
-Various optimization strategies can also be explored with lower implementation burden. In order to show these advantages, I will illustrate how existing computational design processes fit into this framework and how they can be combined.
-I will demonstrate the results of these algorithms on a variety of different examples fabricated using 3D printers.
+Various optimization strategies can also be explored with lower implementation burden. In order to show these advantages,
+I illustrate how existing computational design processes fit into this framework and how they can be combined.
+I demonstrate the results of these algorithms on a variety of different examples fabricated using 3D printers.
