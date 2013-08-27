@@ -36,7 +36,7 @@ In this simple algorithm, the simulation is a table lookup using measured albedo
 
 \begin{figure*}[t]
 \centering
-\includegraphics*[width = 0.5\linewidth]{figure/treeTexture.pdf}
+\includegraphics*[scale=0.7]{figure/treeTexture.pdf}
 \caption{\emph{Reducer tree} for texture.}
 \label{fig:treeTexture}
 \end{figure*}
@@ -55,16 +55,15 @@ I implement a bound estimate callback function specific to this problem.
 Each column is optimized independently using the algorithm. 
 The simulation computes a scattering profile for a given stacking
 and the error metric compares the simulated and goal profiles using squared error.
-
-\begin{figure}
+\begin{figure}[h]
 \centering
-\includegraphics[width=0.5\linewidth]{figure/treeSubs.pdf}
+\includegraphics[scale=0.7]{figure/treeSubs.pdf}
 \caption{
 	\emph{Reducer tree} for heterogeneous subsurface scattering effect.}
 \label{fig:treeSubs}
 \end{figure}
 
-\begin{figure}
+\begin{figure}[h]
 \centering
 \includegraphics[width=0.65\linewidth]{figure/fig_chess.pdf}
 \caption{
@@ -73,7 +72,7 @@ and the error metric compares the simulated and goal profiles using squared erro
 \label{fig:sub}
 \end{figure}
 
-\begin{figure}
+\begin{figure}[h]
 \centering
 \includegraphics[width=0.45\linewidth]{figure/dome.png}
 \caption{
@@ -82,21 +81,43 @@ and the error metric compares the simulated and goal profiles using squared erro
 \end{figure}
 
 \section{Goal-based Caustics:}
-I have configured two different processes for computing goal-based caustics (Figure~\ref{fig:caust2}). While they define exactly the same goal, they have very different \emph{reducer trees} and \emph{tuner networks}.
+I have configured two different processes for computing goal-based caustics (Figure~\ref{fig:caust}). While they define exactly the same goal, they have very different \emph{reducer trees} and \emph{tuner networks}.
 The first process is based on the work of Papas et al.~\shortcite{Marios:2011}.
-It computes a set of micro-lenses which produce the desired caustic image.
+It computes a set of micro-lenses which produce the desired caustic image as shown in Figure~\ref{fig:facet}.
 The image is pre-processed into a set of Gaussian distributions.
 Each distribution is matched with a microlens.
 The optimization applies simulated annealing to permute the location of these micro-lenses
 in order to construct a smooth surface.
+The micro-lenses are represented using \emph{plane nodes}.
+The complete reducer tree is shown in Figure~\ref{fig:treeFacet}.
 In the \emph{tuner network}, each \emph{tuner} is connected to its four neighbors.
 During the execution of an individual \emph{tuner},
 the optimization algorithm makes a randomized decision
 about whether or not to swap its micro-lens with one of its neighbors based on smoothness of the surface.
 The \emph{tuners} are executed many times until a user-specified convergence criterion is met. 
 
-In the second process, based on the work of Finckh et al.~\shortcite{Finckh:2010},
-I use a \emph{B-spline node} to represent a smooth caustic surface.
+\begin{figure}
+\centering
+\includegraphics[scale=0.7]{figure/treeFacet.pdf}
+\caption {\emph{Reducer tree} for facet caustics.
+}
+\label{fig:treeFacet}
+\end{figure}
+
+\begin{figure}
+\centering
+\includegraphics[width=0.65\textwidth]{figure/facet.pdf}
+\caption {3D printed lens arrays that produce a caustic image of Einstein.
+The algorithm is proposed by Papas et al.~\shortcite{Marios:2011}.
+Below we show convergence plots for the microfacet optimizations.
+The portrait is available from the United States Library of Congress's Prints and Photographs division,
+now in the public domain.
+}
+\label{fig:facet}
+\end{figure}
+
+The second process is based on the work of Finckh et al.~\shortcite{Finckh:2010} (Figure~\ref{fig:spline}).
+I use a \emph{B-spline node} to represent a smooth surface.
 This is in contrast to the potentially discontinuous surface in the method above.
 The reduced parameters are the height of each spline control point.
 I implement a simple caustics simulator for height fields.
@@ -104,27 +125,37 @@ The simulated image is compared to the goal image using mean squared error.
 
 \begin{figure}
 \centering
-\includegraphics[width=0.65\linewidth]{figure/fig_caustic.pdf}
-\caption {3D printed lens arrays that each produce a caustic image of Einstein. The algorithms are proposed by Papas et al.~\shortcite{Marios:2011} and Finckh et al.~\shortcite{Finckh:2010}.
-Below we show convergence plots for both the microfacet and smooth surface optimizations.
-The portrait is available from the United States Library of Congress's Prints and Photographs division,
-now in the public domain.
+\includegraphics[scale=0.7]{figure/treeSpline.pdf}
+\caption {\emph{Reducer tree} for smooth caustics.
 }
-\label{fig:caust2}
+\label{fig:treeSpline}
 \end{figure}
-%\vspace{-\baselineskip}
+
+\begin{figure}
+\centering
+\includegraphics[width=0.65\textwidth]{figure/spline.pdf}
+\caption {A smooth surface that produces a caustic image of Einstein.
+The algorithm is proposed by Finckh et al.~\shortcite{Finckh:2010}.
+Below we show convergence plots for the smooth surface optimization.
+}
+\label{fig:spline}
+\end{figure}
 
 \section{Elastic Behavior:}
-In the spirit of Bickel et al.~\shortcite{Bickel:2009}, I will implemented an algorithm to compute material distribution based on a desired force-displacement response.
+In the spirit of Bickel et al.~\shortcite{Bickel:2009},
+I have implemented an algorithm to compute material distribution based on a desired force-displacement response.
 The input to this algorithm is a mesh, a simulation configuration, and a desired shape.
 Simulation configuration includes vertex constraints and forces applied to the mesh.
-For this example, I will use a co-rotational finite element method (FEM) simulation with linearly elastic materials to estimate the objects deformation.
-For the \emph{reducer tree}, I will use a voxel partition to divide the object into a low-resolution grid.
-I will assign a single material to each grid cell.
+For this example, I use a co-rotational finite element method (FEM) simulation
+with linearly elastic materials to estimate the objects deformation.
+For the \emph{reducer tree}, I use a voxel partition to divide the object into a low-resolution grid.
+I assign a single material to each grid cell.
 The FEM simulator queries the \emph{reducer tree} for material assignments at arbitrary spatial locations.
-I will use the same branch and bound algorithm as in our subsurface-scattering process but with a different bound computation callback function.
-I will use the mean squared distance between the simulated and the desired shapes as the error metric.
-I will design a simple experiment to validate this process in which I set the goal of our optimization to be a given deformed state (\autoref{fig:book}).
+I use the same branch and bound algorithm as in our subsurface-scattering process
+but with a different bound computation callback function.
+I use the mean squared distance between the simulated and the desired shapes as the error metric.
+I have designed a simple experiment to validate this process
+in which I set the goal of our optimization to be a given deformed state (\autoref{fig:book}).
 
 \begin{figure}
 \centering
