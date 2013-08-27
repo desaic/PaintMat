@@ -1,7 +1,7 @@
 \chapter{Related Work}
 \label{chap:relate}
 % Geometry compression: Digital Bas-Relief from 3D Scenes
-\biglet{T}{he} new data structures draw ideas from previous work in rendering and optimization.
+The new data structures draw ideas from previous work in rendering and optimization.
 The \emph{reducer tree} is inspired by Cook's shade trees~\cite{Cook1984} and their modern implementation in current rendering systems (e.g., Maya, RenderMan, etc.). Using these approaches, complex effects can be achieved by combining a set of basic shading blocks. The \emph{reducer tree} also uses a tree data structure that combines a set of primitives to compute a material assignment for each point inside of an object volume and describes a spatial-partition of the object volume. While there are many space-partitioning data structures (BSPs, Quad-trees, KD-trees, etc.), they are difficult to specify by hand and they are typically tied to the object geometry.
 My \emph{reducer tree} is intuitive to construct but sufficiently general for representing material distributions.
 In addition, it is specified in an object-independent manner -- the same \emph{reducer tree} can be reused for processing different objects.
