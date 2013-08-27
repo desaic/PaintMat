@@ -203,14 +203,14 @@ My second new combined translation process incorporates both smooth caustics and
 More specifically, I compute a transparent slab with a texture image that, when illuminated, casts a prescribed caustic image.
 The input slab is split into two pieces using a \emph{plane node} as shown in Figure~\ref{fig:treeTexSpline}.
 The top piece is tuned to produce an input image. The material in the top piece is then fixed. The bottom piece is then tuned to produce a caustics image.
-\begin{figure}
+\begin{figure}[h]
 \centering
 \includegraphics[width=0.7\textwidth]{figure/cake.pdf}
 \caption {A textured smooth surface producing a designed caustics image under proper illumination.}
 \label{fig:cake}
 \end{figure}
 
-\begin{figure}
+\begin{figure}[h]
 \centering
 \includegraphics[scale=0.7]{figure/treeTexSpline.pdf}
 \caption {\emph{Reducer tree} for combining texture and smooth caustics.
