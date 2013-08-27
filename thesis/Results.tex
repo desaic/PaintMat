@@ -99,14 +99,6 @@ The \emph{tuners} are executed many times until a user-specified convergence cri
 
 \begin{figure}
 \centering
-\includegraphics[scale=0.7]{figure/treeFacet.pdf}
-\caption {\emph{Reducer tree} for facet caustics.
-}
-\label{fig:treeFacet}
-\end{figure}
-
-\begin{figure}
-\centering
 \includegraphics[width=0.65\textwidth]{figure/facet.pdf}
 \caption {3D printed lens arrays that produce a caustic image of Einstein.
 The algorithm is proposed by Papas et al.~\shortcite{Marios:2011}.
@@ -117,20 +109,20 @@ now in the public domain.
 \label{fig:facet}
 \end{figure}
 
+\begin{figure}
+\centering
+\includegraphics[scale=0.7]{figure/treeFacet.pdf}
+\caption {\emph{Reducer tree} for facet caustics.
+}
+\label{fig:treeFacet}
+\end{figure}
+
 The second process is based on the work of Finckh et al.~\shortcite{Finckh:2010} (Figure~\ref{fig:spline}).
-I use a \emph{B-spline node} to represent a smooth surface.
+I use a \emph{B-spline node} to represent a smooth surface (Figure~\ref{fig:treeSpline}).
 This is in contrast to the potentially discontinuous surface in the method above.
 The reduced parameters are the height of each spline control point.
 I implement a simple caustics simulator for height fields.
 The simulated image is compared to the goal image using mean squared error.
-
-\begin{figure}
-\centering
-\includegraphics[scale=0.7]{figure/treeSpline.pdf}
-\caption {\emph{Reducer tree} for smooth caustics.
-}
-\label{fig:treeSpline}
-\end{figure}
 
 \begin{figure}
 \centering
@@ -140,6 +132,14 @@ The algorithm is proposed by Finckh et al.~\shortcite{Finckh:2010}.
 Below we show convergence plots for the smooth surface optimization.
 }
 \label{fig:spline}
+\end{figure}
+
+\begin{figure}
+\centering
+\includegraphics[scale=0.7]{figure/treeSpline.pdf}
+\caption {\emph{Reducer tree} for smooth caustics.
+}
+\label{fig:treeSpline}
 \end{figure}
 
 \section{Elastic Behavior:}
@@ -176,11 +176,19 @@ The blue line shows the smallest error seen so far while the red line the \emph{
 \end{figure}
 
 \section{Combining Deformable Object and Spatially-varying Albedo:}
-The first of my new translation processes combines spatially-varying albedo and elastic deformation properties.
+The first of my new translation processes combines spatially-varying albedo and elastic deformation properties
+(Figure~\ref{fig:globe}).
 This is a very useful combination since when modeling objects we would like to specify both their appearance and ``feel''.
-In this process, the input shape is divided into a thin shell and an inner volume.
-I will optimize for the deformation behavior and the texture independently due to the limitations of our current FEM simulator.
+In this process, the input shape is divided into a thin shell and an inner volume
+(Figure~\ref{fig:treeTexDef}).
+I optimize for the deformation behavior and the texture independently due to the limitations of our current FEM simulator.
 As the outer shell is very thin, it has negligible influence on overall object deformation.
+\begin{figure}
+\centering
+\includegraphics[width=0.7\textwidth]{figure/globe.pdf}
+\caption {A miniature of Earth with prescribed deformation behavior.}
+\label{fig:globe}
+\end{figure}
 \begin{figure}
 \centering
 \includegraphics[scale=0.7]{figure/treeTexDef.pdf}
@@ -188,17 +196,20 @@ As the outer shell is very thin, it has negligible influence on overall object d
 }
 \label{fig:treeTexDef}
 \end{figure}
-\begin{figure}
-\centering
-\includegraphics[width=0.7\textwidth]{figure/globe.pdf}
-\caption {A miniature of Earth with prescribed deformation behavior.}
-\label{fig:globe}
-\end{figure}
+
 \section{Combining Caustics and Spatially-varying Albedo:}
-My second new combined translation process incorporates both smooth caustics and texture mapping.
+My second new combined translation process incorporates both smooth caustics and texture mapping
+(Figure~\ref{fig:cake}).
 More specifically, I will compute a transparent slab with a texture image that, when illuminated, casts a prescribed caustic image.
 The input slab is split into two pieces using a \emph{plane node} as shown in Figure~\ref{fig:treeTexSpline}.
 The top piece is tuned to produce an input image. The material in the top piece is then fixed. The bottom piece is then tuned to produce a caustics image.
+\begin{figure}
+\centering
+\includegraphics[width=0.7\textwidth]{figure/cake.pdf}
+\caption {A textured smooth surface producing a designed caustics image under proper illumination.}
+\label{fig:cake}
+\end{figure}
+
 \begin{figure}
 \centering
 \includegraphics[scale=0.7]{figure/treeTexSpline.pdf}
@@ -206,12 +217,7 @@ The top piece is tuned to produce an input image. The material in the top piece 
 }
 \label{fig:treeTexSpline}
 \end{figure}
-\begin{figure}
-\centering
-\includegraphics[width=0.7\textwidth]{figure/cake.pdf}
-\caption {A textured smooth surface producing a designed caustics image under proper illumination.}
-\label{fig:globe}
-\end{figure}
+
 \chapter{Discussion}
 Through the above series of experiments, I will confirm whether \emph{reducer tree} and \emph{tuner network} can allow us to reuse a large number of software components.
 In the extreme case, the subsurface scattering algorithm can be obtained by trivially adapting the same \emph{reducer tree} for texture mapping objects.
