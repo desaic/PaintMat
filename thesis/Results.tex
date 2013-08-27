@@ -148,7 +148,8 @@ The input to this algorithm is a mesh, a simulation configuration, and a desired
 Simulation configuration includes vertex constraints and forces applied to the mesh.
 For this example, I use a co-rotational finite element method (FEM) simulation
 with linearly elastic materials to estimate the objects deformation.
-For the \emph{reducer tree}, I use a voxel partition to divide the object into a low-resolution grid.
+For the \emph{reducer tree} (Figure~\ref{fig:treeDeform},
+I use a voxel partition to divide the object into a low-resolution grid.
 I assign a single material to each grid cell.
 The FEM simulator queries the \emph{reducer tree} for material assignments at arbitrary spatial locations.
 I use the same branch and bound algorithm as in our subsurface-scattering process
@@ -156,6 +157,13 @@ but with a different bound computation callback function.
 I use the mean squared distance between the simulated and the desired shapes as the error metric.
 I have designed a simple experiment to validate this process
 in which I set the goal of our optimization to be a given deformed state (\autoref{fig:book}).
+\begin{figure}
+\centering
+\includegraphics[scale=0.7]{figure/treeDeform.pdf}
+\caption {\emph{Reducer tree} for elastic behavior.
+}
+\label{fig:treeDeform}
+\end{figure}
 
 \begin{figure}
 \centering
@@ -166,43 +174,32 @@ The blue line shows the smallest error seen so far while the red line the \emph{
 \label{fig:book}
 \end{figure}
 
-\section{Combining Caustics and Spatially-varying Albedo:}
-The first of my new combined translation processes incorporates both smooth caustics and texture mapping.
-More specifically, I will compute a transparent slab with a texture image that, when illuminated, casts a prescribed caustic image.
-The input slab is split into two pieces using a \emph{plane node} as shown in Figure~\ref{fig:ReducerTreesAdditional}.
-The top piece is tuned to produce an input image. The material in the top piece is then fixed. The bottom piece is then tuned to produce a caustics image.
-
-
 \section{Combining Deformable Object and Spatially-varying Albedo:}
-My second new process combines spatially-varying albedo and elastic deformation properties.
+The first of my new translation processes combines spatially-varying albedo and elastic deformation properties.
 This is a very useful combination since when modeling objects we would like to specify both their appearance and ``feel''.
 In this process, the input shape is divided into a thin shell and an inner volume.
 I will optimize for the deformation behavior and the texture independently due to the limitations of our current FEM simulator.
 As the outer shell is very thin, it has negligible influence on overall object deformation.
-
-\begin{figure*}[t]
+\begin{figure}
 \centering
-\includegraphics*[clip, width = \linewidth]{figure/ReducerNetworksSuplemental}
-\caption{The figure shows all \emph{reducer trees} proposed in this proposal.
-\textbf{Smooth caustics:} The smooth caustics tree consists of a spline surface that divides the geometry into an inner surface filled with a transparent material and an outer, void surface. Void material can be used to implement displacement mapping.
-Here, a single \emph{tuner} can be used ti deform the spline surface.
-\textbf{Smooth caustics/texture:} The smooth caustics/texture \emph{reducer tree} splits the object into upper and lower sections using a plane.
-The upper section then uses the Smooth caustics \emph{reducer tree} to define surface displacements while the lower section uses a set of columns as texture pixels.
-Here, a single \emph{tuner} solves for the caustic image and a set of \emph{tuners} with regular connectivity solves for the textured image.
-\textbf{Deformation/texture:} The object is divided into an outer layer and inner volume using a stratum node.
-The interior volume is then voxelized and each voxel is assigned a layered material.
-As in the previous example, the outer layer is divided into columns which are used as pixels for the texture image.
-The \emph{tuner} setup is also similar to the previous example except the single \emph{tuner} is used to optimize the mechanical behavior of the object.
-\textbf{Facet caustics:} Here, I will build facets by dividing an object into columns and then bisecting the columns horizontally with a plane.
-The orientation of this plane defines the angle of the facet surface. 
-I will use a \emph{tuner network} to optimize for smooth plane orientations.
-\textbf{Subsurface scattering/texture:} The subsurface scattering/texture \emph{reducer tree} partitions the object into an inner volume and outer layer using a \emph{stratum node}.
-The inner volume is unimportant in this example so I  can place a constant material there.
-The outer material is divided into pixels using the \emph{column node}.
-These columns are filled with layered materials.
-I can optimize each column separately using an associated \emph{tuner}.}
-\label{fig:ReducerTreesAdditional}
-\end{figure*}
+\includegraphics[scale=0.7]{figure/treeTexDef.pdf}
+\caption {\emph{Reducer tree} for combining texture and elastic behavior.
+}
+\label{fig:treeDeform}
+\end{figure}
+
+\section{Combining Caustics and Spatially-varying Albedo:}
+My second new combined translation process incorporates both smooth caustics and texture mapping.
+More specifically, I will compute a transparent slab with a texture image that, when illuminated, casts a prescribed caustic image.
+The input slab is split into two pieces using a \emph{plane node} as shown in Figure~\ref{fig:ReducerTreesAdditional}.
+The top piece is tuned to produce an input image. The material in the top piece is then fixed. The bottom piece is then tuned to produce a caustics image.
+\begin{figure}
+\centering
+\includegraphics[scale=0.7]{figure/treeTexSpline.pdf}
+\caption {\emph{Reducer tree} for combining texture and smooth caustics.
+}
+\label{fig:treeDeform}
+\end{figure}
 
 \chapter{Discussion}
 \biglet{T}{hrough} the above series of experiments, I will confirm whether \emph{reducer tree} and \emph{tuner network} can allow us to reuse a large number of software components.
