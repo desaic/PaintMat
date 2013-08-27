@@ -7,7 +7,7 @@
 \usepackage{lgrind}
 \pagestyle{plain}
 
-\usepackage{thesis}
+%\usepackage{thesis}
 \usepackage[final]{graphicx}
 \usepackage{amsmath,amsfonts,amssymb,amsthm}
 \usepackage{verbatim}
@@ -55,16 +55,6 @@
 % no headers on full-page floats
 \floatpagestyle{empty}
 
-% define theorem environments
-\newtheorem{example}{Example}[section]
-\newtheorem{theorem}{Theorem}[section]
-\newtheorem{prop}{Proposition}[section]
-\newtheorem{lemma}{Lemma}[section]
-\newtheorem{corollary}{Corollary}[section]
-\newtheorem{definition}{Definition}[section]
-\newtheorem{crit}{Criterion}[section]
-\renewcommand{\qedsymbol}{$\blacksquare$}
-
 % create new float type for algorithm displays
 \floatstyle{boxed}
 \newfloat{algorithm}{tbh}{loa}
@@ -103,8 +93,6 @@
 \addcontentsline{toc}{chapter}{Acknowledgments}
 \include{ack}
 
-\lhead[\fancyplain{}{\bf\thepage}]{\fancyplain{}{\sfeight\rightmark}}
-\rhead[\fancyplain{}{\sfeight\leftmark}]{\fancyplain{}{\bf\thepage}}
 
 \setcounter{tocdepth}{3}
 \tableofcontents
@@ -130,8 +118,6 @@
 %\include{defn}
 %\cleardoublepage
 
-\lhead[\fancyplain{}{\bf\thepage}]{\fancyplain{}{\sfeight\rightmark}}
-\rhead[\fancyplain{}{\sfeight\leftmark}]{\fancyplain{}{\bf\thepage}}
 %%%%%%%%%%%%%%%%
 %% Document Body
 %%%%%%%%%%%%%%%%
