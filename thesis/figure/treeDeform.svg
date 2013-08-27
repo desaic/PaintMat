@@ -9,8 +9,8 @@
    xmlns="http://www.w3.org/2000/svg"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
-   width="301.31537"
-   height="170.94814"
+   width="365.28009"
+   height="260.85172"
    id="svg10808"
    version="1.1"
    inkscape:version="0.48.4 r9939"
@@ -802,8 +802,8 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="0.98994949"
-     inkscape:cx="185.77259"
-     inkscape:cy="29.246132"
+     inkscape:cx="23.526946"
+     inkscape:cy="157.05972"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      showgrid="false"
@@ -832,10 +832,10 @@
      inkscape:label="Layer 1"
      inkscape:groupmode="layer"
      id="layer1"
-     transform="translate(-137.85274,-343.99621)">
+     transform="translate(-148.96442,-254.09263)">
     <g
        id="g15120"
-       transform="translate(-139.78277,-389.68167)">
+       transform="translate(-128.67109,-454.33143)">
       <g
          transform="matrix(1.25,0,0,-1.25,278.26301,824.87256)"
          id="g6362">
@@ -857,19 +857,19 @@
     </g>
     <text
        id="text6370-6"
-       x="183.58667"
-       y="441.01086"
+       x="194.69835"
+       y="376.36111"
        style="font-size:15px">
       <tspan
          style="font-size:15.68349934px;font-variant:normal;font-weight:normal;font-stretch:normal;writing-mode:lr-tb;fill:#231f20;fill-opacity:1;fill-rule:nonzero;stroke:none;font-family:Myriad Pro;-inkscape-font-specification:MyriadPro-Regular"
-         x="183.58667 190.6756 199.3172 208.02155 215.87903"
-         y="441.01086"
+         x="194.69835 201.78728 210.42888 219.13322 226.99071"
+         y="376.36111"
          sodipodi:role="line"
          id="tspan6372-4">Tuner</tspan>
     </text>
     <g
        id="g15222"
-       transform="translate(-404.28572,27.142857)">
+       transform="translate(-393.17404,-37.506906)">
       <g
          transform="matrix(1.25,0,0,-1.25,561.45721,342.36219)"
          id="g4906">
@@ -891,19 +891,19 @@
     </g>
     <text
        id="text4914"
-       x="182.66003"
-       y="373.83179"
+       x="193.77171"
+       y="309.18204"
        style="font-size:15px">
       <tspan
          style="font-size:15.68349934px;font-variant:normal;font-weight:normal;font-stretch:normal;writing-mode:lr-tb;fill:#231f20;fill-opacity:1;fill-rule:nonzero;stroke:none;font-family:Myriad Pro;-inkscape-font-specification:MyriadPro-Regular"
-         x="182.66003 192.87 200.72742 209.33765 222.41766 230.27509 235.46637 240.98535 248.37231 251.6972 260.40152 269.01175 277.85721"
-         y="373.83179"
+         x="193.77171 203.98167 211.8391 220.44933 233.52934 241.38676 246.57805 252.09703 259.48398 262.80887 271.51318 280.12341 288.96887"
+         y="309.18204"
          sodipodi:role="line"
          id="tspan4916">Geometry node</tspan>
     </text>
     <g
        id="g4918"
-       transform="matrix(1.25,0,0,-1.25,-222.05726,426.27357)">
+       transform="matrix(1.25,0,0,-1.25,-210.94558,361.62381)">
       <g
          id="g4920"
          clip-path="url(#clipPath4922)">
@@ -916,18 +916,18 @@
     </g>
     <text
        id="text4928"
-       x="182.00146"
-       y="408.06042"
+       x="193.11314"
+       y="343.41068"
        style="font-size:15px">
       <tspan
          style="font-size:15.68349934px;font-variant:normal;font-weight:normal;font-stretch:normal;writing-mode:lr-tb;fill:#231f20;fill-opacity:1;fill-rule:nonzero;stroke:none;font-family:Myriad Pro;-inkscape-font-specification:MyriadPro-Regular"
-         x="182.00146 194.70508 202.20178 207.29895 215.15637 220.3476 224.01758 231.57703 235.27832 238.60321 247.30756 255.91779 264.76328"
-         y="408.06042"
+         x="193.11314 205.81676 213.31346 218.41063 226.26805 231.45927 235.12926 242.68871 246.39 249.71489 258.41922 267.02945 275.87494"
+         y="343.41068"
          sodipodi:role="line"
          id="tspan4930">Material node</tspan>
     </text>
     <g
-       transform="matrix(0.83370407,0,0,-0.83370407,334.17742,379.45865)"
+       transform="matrix(1.2721585,0,0,-1.2721585,354.038,308.20518)"
        id="g4822">
       <path
          style="fill:none;stroke:#231f20;stroke-width:2;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:10;stroke-dasharray:none"
@@ -937,7 +937,7 @@
          id="path4824" />
     </g>
     <g
-       transform="matrix(0.83370407,0,0,-0.83370407,334.17742,409.472)"
+       transform="matrix(1.2721585,0,0,-1.2721585,354.038,354.00289)"
        id="g4826">
       <path
          style="fill:#231f20;fill-rule:nonzero"
@@ -947,7 +947,7 @@
     </g>
     <g
        id="g4913"
-       transform="translate(-108.83397,-25.253814)">
+       transform="matrix(1.5259114,0,0,1.5259114,-321.95813,-309.35019)">
       <g
          id="g4810"
          transform="matrix(0.83370407,0,0,-0.83370407,474.87866,393.03894)">
@@ -985,14 +985,14 @@
       </text>
     </g>
     <path
-       style="fill:#e9e9e9;fill-rule:nonzero;stroke:#231f20;stroke-width:1.25055611;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:10;stroke-dasharray:none"
+       style="fill:#e9e9e9;fill-rule:nonzero;stroke:#231f20;stroke-width:1.90823781;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:10;stroke-dasharray:none"
        inkscape:connector-curvature="0"
        stroke-miterlimit="10"
-       d="m 438.54283,390.49772 -45.87623,0 0,-45.87623 45.87623,0 0,45.87623 z"
+       d="m 513.29037,325.04982 -70.00306,0 0,-70.00307 70.00306,0 0,70.00307 z"
        id="path5022" />
     <g
        id="g6072"
-       transform="translate(-148.50716,-25.253814)">
+       transform="matrix(1.5259114,0,0,1.5259114,-382.49591,-309.35019)">
       <path
          id="path5546"
          d="m 587.05,478.61498 -45.87624,0 0,-45.87623 45.87624,0 0,45.87623 z"
@@ -1071,7 +1071,7 @@
     </g>
     <g
        id="g6089"
-       transform="translate(-148.20602,-25.253814)">
+       transform="matrix(1.5259114,0,0,1.5259114,-382.03639,-309.35019)">
       <path
          id="path5952"
          d="m 563.76938,539.13386 -11.32317,0 0,-11.23608 11.32317,0 0,11.23608 z"
@@ -1227,7 +1227,7 @@
       </g>
     </g>
     <g
-       transform="matrix(0.83370407,0,0,-0.83370407,358.26398,422.22061)"
+       transform="matrix(1.2721585,0,0,-1.2721585,390.79196,373.45614)"
        id="g5444">
       <path
          style="fill:#eeb98e;fill-rule:nonzero"
@@ -1236,7 +1236,7 @@
          id="path5446" />
     </g>
     <g
-       transform="matrix(0.83370407,0,0,-0.83370407,358.26398,422.22061)"
+       transform="matrix(1.2721585,0,0,-1.2721585,390.79196,373.45614)"
        id="g5448">
       <path
          style="fill:none;stroke:#231f20;stroke-width:0.5;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:10;stroke-dasharray:none"
@@ -1246,23 +1246,23 @@
          id="path5450" />
     </g>
     <text
-       style="font-size:10.00444889px"
+       style="font-size:15.26590252px"
        font-size="15px"
-       x="324.61337"
-       y="425.15808"
+       x="339.44412"
+       y="377.93845"
        id="text5452">
       <tspan
-         x="324.61337 329.86569 335.21811 339.7001 344.71228"
-         y="425.15808"
+         x="339.44412 347.45868 355.62601 362.46512 370.11325"
+         y="377.93845"
          font-variant="normal"
          font-stretch="normal"
          font-size="15px"
          font-weight="normal"
-         style="font-size:10.00444889px;font-variant:normal;font-weight:normal;font-stretch:normal;writing-mode:lr-tb;fill:#231f20;fill-rule:nonzero;font-family:Myriad Pro"
+         style="font-size:15.26590252px;font-variant:normal;font-weight:normal;font-stretch:normal;writing-mode:lr-tb;fill:#231f20;fill-rule:nonzero;font-family:Myriad Pro"
          id="tspan5454">Voxel</tspan>
     </text>
     <g
-       transform="matrix(0.83370407,0,0,-0.83370407,-274.14375,870.37725)"
+       transform="matrix(1.2721585,0,0,-1.2721585,-574.20621,1057.3035)"
        id="g5456">
       <g
          clip-path="url(#clipPath5460-7)"
@@ -1327,23 +1327,23 @@
       </g>
     </g>
     <text
-       style="font-size:10.00444889px"
+       style="font-size:15.26590252px"
        font-size="15px"
-       x="342.24249"
-       y="461.09207"
+       x="366.3446"
+       y="432.77054"
        id="text5488">
       <tspan
-         x="342.24249 344.31335 346.38425"
-         y="461.09207"
+         x="366.3446 369.50455 372.66455"
+         y="432.77054"
          font-variant="normal"
          font-stretch="normal"
          font-size="15px"
          font-weight="normal"
-         style="font-size:10.00444889px;font-variant:normal;font-weight:normal;font-stretch:normal;writing-mode:lr-tb;fill:#231f20;fill-rule:nonzero;font-family:Myriad Pro"
+         style="font-size:15.26590252px;font-variant:normal;font-weight:normal;font-stretch:normal;writing-mode:lr-tb;fill:#231f20;fill-rule:nonzero;font-family:Myriad Pro"
          id="tspan5490">...</tspan>
     </text>
     <g
-       transform="matrix(0.83370407,0,0,-0.83370407,-274.14375,870.37725)"
+       transform="matrix(1.2721585,0,0,-1.2721585,-574.20621,1057.3035)"
        id="g5492">
       <g
          clip-path="url(#clipPath5496-2)"
@@ -1357,24 +1357,24 @@
       </g>
     </g>
     <text
-       style="font-size:10.00444889px"
-       x="-506.45029"
-       y="307.24399"
+       style="font-size:15.26590252px"
+       x="-501.98318"
+       y="312.93997"
        font-size="15px"
        transform="matrix(0,-1,1,0,0,0)"
        id="text5502">
       <tspan
-         x="-506.45029 -501.72824 -496.98611 -492.37405 -487.36282 -484.19144"
-         y="307.24399"
+         x="-501.98318 -494.77774 -487.54166 -480.50409 -472.85739 -468.01813"
+         y="312.93997"
          font-variant="normal"
          font-stretch="normal"
          font-size="15px"
          font-weight="normal"
-         style="font-size:10.00444889px;font-variant:normal;font-weight:normal;font-stretch:normal;writing-mode:lr-tb;fill:#231f20;fill-rule:nonzero;font-family:Myriad Pro"
+         style="font-size:15.26590252px;font-variant:normal;font-weight:normal;font-stretch:normal;writing-mode:lr-tb;fill:#231f20;fill-rule:nonzero;font-family:Myriad Pro"
          id="tspan5504">Layerd</tspan>
     </text>
     <g
-       transform="matrix(0.83370407,0,0,-0.83370407,-274.14375,870.37725)"
+       transform="matrix(1.2721585,0,0,-1.2721585,-574.20621,1057.3035)"
        id="g5506">
       <g
          clip-path="url(#clipPath5510-0)"
@@ -1388,24 +1388,24 @@
       </g>
     </g>
     <text
-       style="font-size:10.00444889px"
-       x="-506.45029"
-       y="325.16125"
+       style="font-size:15.26590252px"
+       x="-501.98318"
+       y="340.28012"
        font-size="15px"
        transform="matrix(0,-1,1,0,0,0)"
        id="text5516">
       <tspan
-         x="-506.45029 -501.72824 -496.98611 -492.37405 -487.36282 -484.19144"
-         y="325.16125"
+         x="-501.98318 -494.77774 -487.54166 -480.50409 -472.85739 -468.01813"
+         y="340.28012"
          font-variant="normal"
          font-stretch="normal"
          font-size="15px"
          font-weight="normal"
-         style="font-size:10.00444889px;font-variant:normal;font-weight:normal;font-stretch:normal;writing-mode:lr-tb;fill:#231f20;fill-rule:nonzero;font-family:Myriad Pro"
+         style="font-size:15.26590252px;font-variant:normal;font-weight:normal;font-stretch:normal;writing-mode:lr-tb;fill:#231f20;fill-rule:nonzero;font-family:Myriad Pro"
          id="tspan5518">Layerd</tspan>
     </text>
     <g
-       transform="matrix(0.83370407,0,0,-0.83370407,-274.14375,870.37725)"
+       transform="matrix(1.2721585,0,0,-1.2721585,-574.20621,1057.3035)"
        id="g5520">
       <g
          clip-path="url(#clipPath5524-7)"
@@ -1419,41 +1419,41 @@
       </g>
     </g>
     <text
-       style="font-size:10.00444889px"
-       x="-506.45029"
-       y="371.22989"
+       style="font-size:15.26590252px"
+       x="-501.98318"
+       y="410.57678"
        font-size="15px"
        transform="matrix(0,-1,1,0,0,0)"
        id="text5530">
       <tspan
-         x="-506.45029 -501.72824 -496.98611 -492.37405 -487.36282 -484.19144"
-         y="371.22989"
+         x="-501.98318 -494.77774 -487.54166 -480.50409 -472.85739 -468.01813"
+         y="410.57678"
          font-variant="normal"
          font-stretch="normal"
          font-size="15px"
          font-weight="normal"
-         style="font-size:10.00444889px;font-variant:normal;font-weight:normal;font-stretch:normal;writing-mode:lr-tb;fill:#231f20;fill-rule:nonzero;font-family:Myriad Pro"
+         style="font-size:15.26590252px;font-variant:normal;font-weight:normal;font-stretch:normal;writing-mode:lr-tb;fill:#231f20;fill-rule:nonzero;font-family:Myriad Pro"
          id="tspan5532">Layerd</tspan>
     </text>
     <text
-       style="font-size:10.00444889px"
+       style="font-size:15.26590252px"
        font-size="15px"
-       x="342.88596"
-       y="500.48611"
+       x="367.32645"
+       y="492.88239"
        id="text5534">
       <tspan
-         x="342.88596 344.95694 347.02783"
-         y="500.48611"
+         x="367.32645 370.4866 373.64661"
+         y="492.88239"
          font-variant="normal"
          font-stretch="normal"
          font-size="15px"
          font-weight="normal"
-         style="font-size:10.00444889px;font-variant:normal;font-weight:normal;font-stretch:normal;writing-mode:lr-tb;fill:#231f20;fill-rule:nonzero;font-family:Myriad Pro"
+         style="font-size:15.26590252px;font-variant:normal;font-weight:normal;font-stretch:normal;writing-mode:lr-tb;fill:#231f20;fill-rule:nonzero;font-family:Myriad Pro"
          id="tspan5536">...</tspan>
     </text>
     <g
        id="g5031"
-       transform="translate(-97.96377,-22.396671)">
+       transform="matrix(1.5259114,0,0,1.5259114,-305.37117,-304.99044)">
       <g
          id="g6322"
          transform="matrix(0.83370407,0,0,-0.83370407,454.65601,409.3483)">

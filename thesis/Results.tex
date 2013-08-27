@@ -72,9 +72,9 @@ and the error metric compares the simulated and goal profiles using squared erro
 \label{fig:sub}
 \end{figure}
 
-\begin{figure}[h]
+\begin{figure}
 \centering
-\includegraphics[width=0.45\linewidth]{figure/dome.png}
+\includegraphics[width=0.75\linewidth]{figure/dome.pdf}
 \caption{
 	A marble dome produced by the subsurface scattering \emph{reducer tree}.}
 \label{fig:dome}
@@ -186,22 +186,32 @@ As the outer shell is very thin, it has negligible influence on overall object d
 \includegraphics[scale=0.7]{figure/treeTexDef.pdf}
 \caption {\emph{Reducer tree} for combining texture and elastic behavior.
 }
-\label{fig:treeDeform}
+\label{fig:treeTexDef}
 \end{figure}
-
+\begin{figure}
+\centering
+\includegraphics[width=0.7\textwidth]{figure/globe.pdf}
+\caption {A miniature of Earth with prescribed deformation behavior.}
+\label{fig:globe}
+\end{figure}
 \section{Combining Caustics and Spatially-varying Albedo:}
 My second new combined translation process incorporates both smooth caustics and texture mapping.
 More specifically, I will compute a transparent slab with a texture image that, when illuminated, casts a prescribed caustic image.
-The input slab is split into two pieces using a \emph{plane node} as shown in Figure~\ref{fig:ReducerTreesAdditional}.
+The input slab is split into two pieces using a \emph{plane node} as shown in Figure~\ref{fig:treeTexSpline}.
 The top piece is tuned to produce an input image. The material in the top piece is then fixed. The bottom piece is then tuned to produce a caustics image.
 \begin{figure}
 \centering
 \includegraphics[scale=0.7]{figure/treeTexSpline.pdf}
 \caption {\emph{Reducer tree} for combining texture and smooth caustics.
 }
-\label{fig:treeDeform}
+\label{fig:treeTexSpline}
 \end{figure}
-
+\begin{figure}
+\centering
+\includegraphics[width=0.7\textwidth]{figure/cake.pdf}
+\caption {A textured smooth surface producing a designed caustics image under proper illumination.}
+\label{fig:globe}
+\end{figure}
 \chapter{Discussion}
 Through the above series of experiments, I will confirm whether \emph{reducer tree} and \emph{tuner network} can allow us to reuse a large number of software components.
 In the extreme case, the subsurface scattering algorithm can be obtained by trivially adapting the same \emph{reducer tree} for texture mapping objects.
