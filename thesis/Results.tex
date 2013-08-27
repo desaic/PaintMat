@@ -80,7 +80,7 @@ and the error metric compares the simulated and goal profiles using squared erro
 \label{fig:dome}
 \end{figure}
 
-\section{Goal-based Caustics:}
+\section{Goal-based Caustics}
 I have configured two different processes for computing goal-based caustics.
 While they define exactly the same goal, they have very different \emph{reducer trees} and \emph{tuner networks}.
 The first process is based on the work of Papas et al.~\shortcite{Marios:2011}.
@@ -142,7 +142,7 @@ Below we show convergence plots for the smooth surface optimization.
 \label{fig:treeSpline}
 \end{figure}
 
-\section{Elastic Behavior:}
+\section{Elastic Behavior}
 In the spirit of Bickel et al.~\shortcite{Bickel:2009},
 I have implemented an algorithm to compute material distribution based on a desired force-displacement response.
 The input to this algorithm is a mesh, a simulation configuration, and a desired shape.
@@ -175,7 +175,7 @@ The blue line shows the smallest error seen so far while the red line the \emph{
 \label{fig:book}
 \end{figure}
 
-\section{Combining Deformable Object and Spatially-varying Albedo:}
+\section{Combining Deformable Object and Spatially-varying Albedo}
 The first of my new translation processes combines spatially-varying albedo and elastic deformation properties
 (Figure~\ref{fig:globe}).
 This is a very useful combination since when modeling objects we would like to specify both their appearance and ``feel''.
@@ -197,7 +197,7 @@ As the outer shell is very thin, it has negligible influence on overall object d
 \label{fig:treeTexDef}
 \end{figure}
 
-\section{Combining Caustics and Spatially-varying Albedo:}
+\section{Combining Caustics and Spatially-varying Albedo}
 My second new combined translation process incorporates both smooth caustics and texture mapping
 (Figure~\ref{fig:cake}).
 More specifically, I will compute a transparent slab with a texture image that, when illuminated, casts a prescribed caustic image.
