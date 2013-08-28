@@ -200,7 +200,6 @@ ElementHex::InterpWeights(const Eigen::Vector3f & p,
 void ElementHex::DrawOpenGL(const std::vector<Eigen::Vector3f> & nodes)
 {
   const std::vector<int> & idx = GetNodeIndices();
-  std::cout<<"draw hex element\n";
   glDisable(GL_LIGHTING);
   glBegin(GL_LINES);
   glColor3f(0,1,1);
