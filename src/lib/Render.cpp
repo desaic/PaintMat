@@ -5,13 +5,14 @@
  *      Author: desaic
  */
 
+#include "Element/ElementMesh.hpp"
 #include "Util/Render.hpp"
 #include "Util/glheader.hpp"
-#include <math.h>
 #include "World/Camera.hpp"
 #include "World/World.hpp"
 #include "World/Mesh.hpp"
 #include "vecmath.h"
+#include <math.h>
 static Quat4f rot;
 World * wd;
 Camera * cam;
@@ -127,6 +128,9 @@ void display(void)
 
   for(size_t ii =0; ii<wd->mesh.size();ii++){
     wd->mesh[ii]->draw(wd->mesh[ii]->v);
+  }
+  for (size_t ii = 0; ii < wd->element.size(); ii++) {
+    wd->element[ii]->DrawOpenGL();
   }
   glPopMatrix();
 

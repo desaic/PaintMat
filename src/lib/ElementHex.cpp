@@ -14,6 +14,8 @@
 
 #include "Util/glheader.hpp"
 
+#include <iostream>
+
 float ElementHex::GetEnery(const std::vector<Eigen::Vector3f> & X,
   const std::vector<Eigen::Vector3f> & u)
 {
@@ -198,13 +200,22 @@ ElementHex::InterpWeights(const Eigen::Vector3f & p,
 void ElementHex::DrawOpenGL(const std::vector<Eigen::Vector3f> & nodes)
 {
   const std::vector<int> & idx = GetNodeIndices();
+  std::cout<<"draw hex element\n";
   glDisable(GL_LIGHTING);
   glBegin(GL_LINES);
-
-  for(int ii = 0; ii>4; ii++){
+  glColor3f(0,1,1);
+  for(int ii = 0; ii<4; ii++){
     glVertex3f(nodes[idx[ii]][0],nodes[idx[ii]][1],nodes[idx[ii]][2]);
     int jj = (ii+1) % 4;
     glVertex3f(nodes[idx[jj]][0],nodes[idx[jj]][1],nodes[idx[jj]][2]);
+
+    int kk = ii+4;
+    jj = jj+4;
+    glVertex3f(nodes[idx[kk]][0],nodes[idx[kk]][1],nodes[idx[kk]][2]);
+    glVertex3f(nodes[idx[jj]][0],nodes[idx[jj]][1],nodes[idx[jj]][2]);
+
+    glVertex3f(nodes[idx[kk]][0],nodes[idx[kk]][1],nodes[idx[kk]][2]);
+    glVertex3f(nodes[idx[ii]][0],nodes[idx[ii]][1],nodes[idx[ii]][2]);
   }
   glEnd();
   glEnable(GL_LIGHTING);

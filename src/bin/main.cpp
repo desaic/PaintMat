@@ -1,6 +1,6 @@
 #include <iostream>
 #include <string.h>
-
+#include "Element/ElementMesh.hpp"
 #include "Util/Render.hpp"
 #include "World/World.hpp"
 #include "World/Mesh.hpp"
@@ -10,6 +10,8 @@ int main(int argc , char * argv[])
 {
   World world;
   Mesh m;
+  ElementMesh * element = ElementMesh::CreateGrid(2,3,4);
+  world.element.push_back(element);
   Render render;
 
   if(argc<2){
