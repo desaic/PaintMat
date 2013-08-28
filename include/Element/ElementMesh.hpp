@@ -16,8 +16,13 @@ class ElementMesh
 public:
   ElementMesh();
   virtual ~ElementMesh();
-  std::vector<Element> elements;
+  ///@brief pointers are owned and freed by this class
+  std::vector<Element*> elements;
   std::vector<Eigen::Vector3f> nodes;
+
+  void DrawOpenGL();
+
+  static ElementMesh * CreateGrid(int nx, int ny, int nz);
 };
 
 #endif /* ELEMENTMESH_HPP_ */

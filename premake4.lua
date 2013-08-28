@@ -2,11 +2,11 @@ solution "PaintMat"
   configurations { "Debug", "Release" }
   
   configuration { "Debug" }
-    targetdir "bin/debug"
+    targetdir "debug"
     buildoptions{"-std=c++0x"}
  
   configuration { "Release" }
-    targetdir "bin/release"
+    targetdir "release"
     buildoptions{"-std=c++0x"}
   include("extern/vecmath")
 project "PaintMat"

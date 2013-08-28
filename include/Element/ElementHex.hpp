@@ -34,6 +34,7 @@ public:
     );
   float GetEnery(const std::vector<Eigen::Vector3f> & X,
         const std::vector<Eigen::Vector3f> & u);
+  void DrawOpenGL(const std::vector<Eigen::Vector3f> & nodes);
   virtual ~ElementHex();
 private:
   Eigen::Vector3f getLocalCoord(const Eigen::Vector3f & p,

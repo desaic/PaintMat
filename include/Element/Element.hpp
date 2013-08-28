@@ -56,6 +56,8 @@ public:
   MaterialModel * material;
   std::vector<ForceVolume *> forces;
   float density;
+
+  virtual void DrawOpenGL(const std::vector<Eigen::Vector3f> & nodes)=0;
 private:
   std::vector<int> nodeIndices;
 

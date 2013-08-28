@@ -12,6 +12,8 @@
 
 #include "Eigen/Core"
 
+#include "Util/glheader.hpp"
+
 float ElementHex::GetEnery(const std::vector<Eigen::Vector3f> & X,
   const std::vector<Eigen::Vector3f> & u)
 {
@@ -191,6 +193,21 @@ ElementHex::InterpWeights(const Eigen::Vector3f & p,
   weights[7] = (1.0/8) * (1-xx[0]) * (1+xx[1]) * (1+xx[2]) ;
 
   return weights;
+}
+
+void ElementHex::DrawOpenGL(const std::vector<Eigen::Vector3f> & nodes)
+{
+  const std::vector<int> & idx = GetNodeIndices();
+  glDisable(GL_LIGHTING);
+  glBegin(GL_LINES);
+
+  for(int ii = 0; ii>4; ii++){
+    glVertex3f(nodes[idx[ii]][0],nodes[idx[ii]][1],nodes[idx[ii]][2]);
+    int jj = (ii+1) % 4;
+    glVertex3f(nodes[idx[jj]][0],nodes[idx[jj]][1],nodes[idx[jj]][2]);
+  }
+  glEnd();
+  glEnable(GL_LIGHTING);
 }
 
 ElementHex::ElementHex()
