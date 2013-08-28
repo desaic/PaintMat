@@ -38,7 +38,7 @@ To demonstrate the flexibility of the \emph{reducer tree}, I define a small yet 
 
 \paragraph{Material Nodes:} The \emph{leaf nodes} of the \emph{reducer tree} are the material parameterization nodes. These contain a material assignment function $\lambda\left(x\right)$ that maps spatial coordinates to materials. \emph{Material nodes} can assign a void material to regions of the volume. Hence, surface displacements and material assignments can be treated in a unified fashion.
 While \emph{material node} can be extended to implement arbitrary material assignment functions
-(such as Functionally graded materials and lattice structures),
+(such as functionally graded materials and lattice structures),
 all the following results require only a single type of \emph{material node}, \emph{layered node}, which assigns $k$ material layers of varying thickness to a geometry partition.
 As a special case, a constant material for a region can be implemented as a \emph{layered node} with a single layer.
 
