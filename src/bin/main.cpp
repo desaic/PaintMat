@@ -13,6 +13,8 @@
 #include "TimeStepper/TimeStepper.hpp"
 #include "TimeStepper/TimeStatic.hpp"
 
+#include "UnitTests.hpp"
+
 struct StepperArg
 {
   TimeStepper * stepper;
@@ -29,6 +31,10 @@ stepTime(void * arg)
 
 int main(int argc , char * argv[])
 {
+
+  QuadratureTest();
+  return 0;
+
   World world;
   Mesh m;
   ElementMesh * element = ElementMesh::CreateGrid(2,3,4);
