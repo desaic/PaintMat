@@ -4,6 +4,7 @@
 
 #include "Element/Element.hpp"
 #include "Element/ElementMesh.hpp"
+#include "Element/ElementRegGrid.hpp"
 #include "Element/MaterialStVK.hpp"
 #include "Util/Render.hpp"
 #include "World/World.hpp"
@@ -34,7 +35,7 @@ int main(int argc , char * argv[])
 
   World world;
   Mesh m;
-  ElementMesh * element = ElementMesh::CreateGrid(2,3,4);
+  ElementMesh * element = new ElementRegGrid(2,3,4);
 
   MaterialStVK material;
   for(size_t ii = 0;ii<element->elements.size();ii++){
@@ -72,7 +73,7 @@ int main(int argc , char * argv[])
   }
   world.mesh.push_back(&m);
 
-  pthread_create(&timeThread, NULL, stepTime, (void*)&arg);
+  //pthread_create(&timeThread, NULL, stepTime, (void*)&arg);
 
   render.loop();
   return 0;

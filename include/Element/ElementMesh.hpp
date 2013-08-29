@@ -28,9 +28,7 @@ public:
   //@brief get forces for each node.
   std::vector<Eigen::Vector3f> GetForces();
 
-  void DrawOpenGL();
-
-  static ElementMesh * CreateGrid(int nx, int ny, int nz);
+  virtual void DrawOpenGL();
 };
 
 #endif /* ELEMENTMESH_HPP_ */
