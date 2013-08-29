@@ -13,10 +13,10 @@
 #include <sstream>
 #include <string.h>
 #include "Util/util.h"
-
-#include "vecmath.h"
+#include <Eigen/Geometry>
 ///@brief is a point inside a box
-bool ptInBox(const Vector3f & mn, const Vector3f mx, const Vector3f & x)
+bool ptInBox(const Eigen::Vector3f & mn,
+    const Eigen::Vector3f mx, const Eigen::Vector3f & x)
 {
   for(int dim = 0 ;dim<3;dim++){
     if(x[dim]<mn[dim] || x[dim] > mx[dim]){
@@ -25,14 +25,17 @@ bool ptInBox(const Vector3f & mn, const Vector3f mx, const Vector3f & x)
   }
   return true;
 }
-void makeCube(Mesh & m, const Vector3f & mn, const Vector3f mx)
+void makeCube(Mesh & m, const Eigen::Vector3f & mn,
+    const Eigen::Vector3f mx)
 {
-  Vector3f ss = mx -mn;
-  Matrix4f tran= Matrix4f::scaling(ss[0],ss[1],ss[2]);
-  tran = Matrix4f::translation(mn[0],mn[1],mn[2]) * tran;
+  Eigen::Vector3f ss = mx -mn;
+  Eigen::Affine3f transform =
+      Eigen::Affine3f::Identity();
+  transform.translate(mn);
+  transform.scale(ss);
   m=UNIT_CUBE;
   for(unsigned int ii = 0;ii<m.v.size();ii++){
-    m.v[ii] = (tran*Vector4f(m.v[ii],1)).xyz();
+    m.v[ii] = transform * m.v[ii];
   }
 }
 void Mesh::append(const Mesh & m)
@@ -60,14 +63,15 @@ Mesh & Mesh::operator= (const Mesh& m)
 }
 
 ///@brief cube [0,1]^3
-std::vector<Vector3f> CUBE_VERT={Vector3f (0,0,0),
-    Vector3f (1,0,0),
-    Vector3f (1, 0, 1),
-    Vector3f (0, 0, 1),
-    Vector3f (0, 1, 0),
-    Vector3f (1, 1, 0),
-    Vector3f (1, 1, 1),
-    Vector3f (0, 1, 1)};
+std::vector<Eigen::Vector3f> CUBE_VERT={
+    Eigen::Vector3f (0,0,0),
+    Eigen::Vector3f (1,0,0),
+    Eigen::Vector3f (1, 0, 1),
+    Eigen::Vector3f (0, 0, 1),
+    Eigen::Vector3f (0, 1, 0),
+    Eigen::Vector3f (1, 1, 0),
+    Eigen::Vector3f (1, 1, 1),
+    Eigen::Vector3f (0, 1, 1)};
 
 std::vector<Eigen::Vector3i>CUBE_TRIG={Eigen::Vector3i(0,1,3),
     Eigen::Vector3i(1, 2, 3),
@@ -86,7 +90,7 @@ Mesh UNIT_CUBE(CUBE_VERT,CUBE_TRIG);
 Mesh::Mesh():v(0),t(0),
     glTexID(0){}
 
-Mesh::Mesh(const std::vector<Vector3f>&_v,
+Mesh::Mesh(const std::vector<Eigen::Vector3f>&_v,
     const std::vector<Eigen::Vector3i>&_t):v(_v),t(_t),
     glTexID(0)
 {
@@ -157,7 +161,7 @@ void Mesh::read_obj(std::ifstream & f)
     std::stringstream ss(line);
     ss>>tok;
     if(tok==vTok) {
-      Vector3f vec;
+      Eigen::Vector3f vec;
       ss>>vec[0]>>vec[1]>>vec[2];
       v.push_back(vec);
     } else if(tok==fTok) {
@@ -191,7 +195,7 @@ void Mesh::read_obj(std::ifstream & f)
         texId.push_back(textureId);
       }
     } else if(tok==texTok) {
-      Vector2f texcoord;
+      Eigen::Vector2f texcoord;
       ss>>texcoord[0];
       ss>>texcoord[1];
       tex.push_back(texcoord);
@@ -359,7 +363,7 @@ void Mesh::rescale()
     std::cout<<"empty mesh\n";
     return;
   }
-  Vector3f mn=v[0],mx=v[0];
+  Eigen::Vector3f mn=v[0],mx=v[0];
 
   //scale and translate to [0 , 1]
   for (unsigned int dim = 0; dim<3; dim++) {
@@ -389,9 +393,9 @@ void Mesh::compute_norm()
 {
   n.resize(v.size());
   for(unsigned int ii=0; ii<t.size(); ii++) {
-    Vector3f a = v[t[ii][1]] - v[t[ii][0]];
-    Vector3f b = v[t[ii][2]] - v[t[ii][0]];
-    b=Vector3f::cross(a,b);
+    Eigen::Vector3f a = v[t[ii][1]] - v[t[ii][0]];
+    Eigen::Vector3f b = v[t[ii][2]] - v[t[ii][0]];
+    b=a.cross(b);
     b.normalize();
     for(int jj=0; jj<3; jj++) {
       n[t[ii][jj]]+=b;
@@ -422,7 +426,7 @@ void Mesh::drawWire()
   glEnable(GL_LIGHTING);
 }
 
-void Mesh::draw(std::vector<Vector3f>&v)
+void Mesh::draw(std::vector<Eigen::Vector3f>&v)
 {
   //glDisable(GL_LIGHTING);
   //glUseProgramObjectARB(prog);
@@ -433,7 +437,7 @@ void Mesh::draw(std::vector<Vector3f>&v)
   glMaterialfv(GL_FRONT,GL_SPECULAR,specular);
   glMaterialfv(GL_FRONT,GL_AMBIENT,ambient);
   //glMaterialfv(GL_FRONT,GL_DIFFUSE,diffuse);
-  Vector3f mn,mx;
+  Eigen::Vector3f mn,mx;
   BBox(v,mn,mx);
   glPushMatrix();
   mx = mx-mn;
@@ -516,7 +520,8 @@ void printInfoLog(GLhandleARB obj)
 }
 #endif
 
-void BBox(const std::vector<Vector3f >& v, Vector3f & mn, Vector3f & mx)
+void BBox(const std::vector<Eigen::Vector3f >& v,
+    Eigen::Vector3f & mn, Eigen::Vector3f & mx)
 {
   mn = v[0];
   mx = v[0];
@@ -532,7 +537,8 @@ void BBox(const std::vector<Vector3f >& v, Vector3f & mn, Vector3f & mx)
   }
 }
 
-void BBox(const Mesh & m, Vector3f & mn, Vector3f & mx)
+void BBox(const Mesh & m,
+    Eigen::Vector3f & mn, Eigen::Vector3f & mx)
 {
   BBox(m.v,mn,mx);
 }

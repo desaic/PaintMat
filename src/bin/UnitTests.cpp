@@ -18,6 +18,7 @@ void QuadratureTest()
   GaussCube cube;
   cube.mn = Eigen::Vector3f::Zero();
   cube.mx = 2*Eigen::Vector3f::Ones();
+  cube.mx[0] = 1;
   std::vector<float> weights;
   std::vector<Eigen::Vector3f> points;
   cube.Get(weights, points);
