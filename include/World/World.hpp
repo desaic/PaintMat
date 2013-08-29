@@ -11,5 +11,9 @@ public:
   std::vector<Mesh * > mesh;
   std::vector<ElementMesh * > element;
   std::vector<double> getState();
+  ///@brief forces that are applied  to all elements
+  std::vector<ForceVolume * > forces;
+
+  void ApplyForce();
 };
 #endif

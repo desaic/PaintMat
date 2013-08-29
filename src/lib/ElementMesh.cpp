@@ -11,6 +11,28 @@
 //node index
 #define IX(ii,jj,kk) ( (ii) * NY * NZ + (jj) * NZ + kk)
 
+//@brief get forces for each node.
+std::vector<Eigen::Vector3f>
+ElementMesh::GetForces()
+{
+  std::vector<Eigen::Vector3f> nodalForces(nodes.size(),
+      Eigen::Vector3f::Zero());
+  for(size_t ii = 0;ii<elements.size();ii++){
+    Element * e =elements[ii];
+    e->forces = forces;
+    std::vector<Eigen::Vector3f> eForce;
+    eForce = e->GetNodalForces(nodes,u);
+    std::vector<int> indices = e->GetNodeIndices();
+    if(indices.size() != eForce.size()){
+      std::cout<<"Error: number of forces does not equal number of nodes\n";
+    }
+    for(size_t jj = 0;jj<indices.size();jj++){
+      nodalForces[indices[jj]] += eForce[jj];
+    }
+  }
+  return nodalForces;
+}
+
 ElementMesh *
 ElementMesh::CreateGrid(int nx, int ny, int nz)
 {
@@ -27,6 +49,7 @@ ElementMesh::CreateGrid(int nx, int ny, int nz)
       }
     }
   }
+  u = nodes;
   for (int ii = 0; ii < nx; ii++) {
     for (int jj = 0; jj < ny; jj++) {
       for (int kk = 0; kk < nz; kk++) {
@@ -55,7 +78,7 @@ void
 ElementMesh::DrawOpenGL()
 {
   for(size_t ii = 0; ii<elements.size(); ii++){
-    elements[ii]->DrawOpenGL(nodes);
+    elements[ii]->DrawOpenGL(u);
   }
 }
 

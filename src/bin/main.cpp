@@ -11,6 +11,9 @@ int main(int argc , char * argv[])
   World world;
   Mesh m;
   ElementMesh * element = ElementMesh::CreateGrid(2,3,4);
+  ForceGravity gravity;
+  gravity.g = Vector3f(0,-1,0);
+  world.forces.push_back(&gravity);
   world.element.push_back(element);
   Render render;
 
