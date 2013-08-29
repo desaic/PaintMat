@@ -7,8 +7,20 @@
 
 #include "Element/ElementRegGrid.hpp"
 #include "Element/ElementHex.hpp"
+#include "Util/util.h"
 //node index
 #define IX(ii,jj,kk) ( (ii) * NY * NZ + (jj) * NZ + kk)
+
+int ElementRegGrid::GetEleInd(const Eigen::Vector3f & p)
+{
+  int ii = (int)(p[0]*nx);
+  int jj = (int)(p[1]*nx);
+  int kk = (int)(p[2]*nx);
+  ii = clamp(ii, 0, nx - 1);
+  jj = clamp(jj, 0, ny - 1);
+  kk = clamp(kk, 0, nz - 1);
+  return ii * ny * nz + jj * ny + kk;
+}
 
 ElementRegGrid::  ElementRegGrid(int _nx , int _ny , int _nz )
 :nx(_nx),ny(_ny),nz(_nz)

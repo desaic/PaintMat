@@ -127,10 +127,11 @@ void display(void)
   glTranslatef(-0.5, -0.5, -0.5);
 
   for(size_t ii =0; ii<wd->mesh.size();ii++){
-    wd->mesh[ii]->draw(wd->mesh[ii]->v);
+    wd->mesh[ii]->update();
+    wd->mesh[ii]->draw();
   }
   for (size_t ii = 0; ii < wd->element.size(); ii++) {
-    wd->element[ii]->DrawOpenGL();
+ //   wd->element[ii]->DrawOpenGL();
   }
   glPopMatrix();
 

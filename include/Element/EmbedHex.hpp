@@ -8,21 +8,24 @@
 #ifndef EMBEDHEX_HPP_
 #define EMBEDHEX_HPP_
 #include "Eigen/Dense"
+#include "World/Mesh.hpp"
+class ElementRegGrid;
 
-class ElementMesh;
-class Mesh;
 ///@brief embeds a mesh in a regular hexahedron grid
-class EmbedHex
+class EmbedHex:public Mesh
 {
 public:
   EmbedHex();
   virtual ~EmbedHex();
-  ElementMesh * grid;
-  Mesh * mesh;
+  ElementRegGrid * grid;
+
   ///@brief deformed vertices
   std::vector<Eigen::Vector3f> u;
   ///@brief which element is each vertex in
   std::vector<int>eleInd;
+  void init();
+  virtual void update();
+  virtual void draw();
 };
 
 #endif /* EMBEDHEX_HPP_ */

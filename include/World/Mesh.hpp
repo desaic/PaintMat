@@ -23,6 +23,7 @@ public:
 
   Mesh(const char * filename,bool normalize);
   void load_mesh(const char * filename, bool normalize=true);
+  virtual void draw();
   void draw(std::vector<Eigen::Vector3f>&v);
   void drawWire();
   void save(const char * filename);
@@ -35,6 +36,7 @@ public:
   void rescale();
   void append(const Mesh & m);
   Mesh & operator= (const Mesh& m);
+  virtual void update();
 private:
   GLuint glTexID;
 };

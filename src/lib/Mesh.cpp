@@ -325,6 +325,9 @@ void Mesh::save_obj(const char * filename, bool flip  )
   out.close();
 }
 
+void Mesh::update()
+{}
+
 Mesh::Mesh(const char * filename,bool normalize)
 {
   load_mesh(filename,normalize);
@@ -425,7 +428,9 @@ void Mesh::drawWire()
   glEnd();
   glEnable(GL_LIGHTING);
 }
-
+void Mesh::draw(){
+  draw(v);
+}
 void Mesh::draw(std::vector<Eigen::Vector3f>&v)
 {
   //glDisable(GL_LIGHTING);
