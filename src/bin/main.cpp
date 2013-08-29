@@ -2,7 +2,9 @@
 #include <string.h>
 #include <pthread.h>
 
+#include "Element/Element.hpp"
 #include "Element/ElementMesh.hpp"
+#include "Element/MaterialStVK.hpp"
 #include "Util/Render.hpp"
 #include "World/World.hpp"
 #include "World/Mesh.hpp"
@@ -30,6 +32,12 @@ int main(int argc , char * argv[])
   World world;
   Mesh m;
   ElementMesh * element = ElementMesh::CreateGrid(2,3,4);
+
+  MaterialStVK material;
+  for(size_t ii = 0;ii<element->elements.size();ii++){
+    element->elements[ii]->material = & material;
+  }
+
   ForceGravity gravity;
   TimeStatic timeStepper;
   gravity.g = Eigen::Vector3f(0,-1,0);
