@@ -19,7 +19,7 @@ project "PaintMat"
   if os.is("Windows") then 
     links {"./lib/win32/png"}
   else
-    links {"png", "GL","GLU","glut","gomp","m"}
+    links {"png", "GL","GLU","glut","gomp","m","pthread"}
   end
   links {"vecmath"}
   if os.is("macosx") then

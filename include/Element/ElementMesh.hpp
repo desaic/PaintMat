@@ -11,6 +11,7 @@
 #include <vector>
 
 class Element;
+class ForceVolume;
 class ElementMesh
 {
 public:

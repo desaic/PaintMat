@@ -4,6 +4,7 @@
 #include <vector>
 class Mesh;
 class ElementMesh;
+class ForceVolume;
 class World
 {
 public:

@@ -7,6 +7,7 @@
 #include "Util/Texture.hpp"
 #include "Eigen/Dense"
 #include "Util/glheader.hpp"
+#include "vecmath.h"
 
 class Mesh{
 public:

@@ -5,11 +5,12 @@
  *      Author: desaic
  */
 #include "World/World.hpp"
-
+#include "Element/ElementMesh.hpp"
+#include <iostream>
 void World::ApplyForce()
 {
-  for(size_t ii = 0;ii<element.size();ii++){
-    element[ii]->forces= forces;
+  for (size_t ii = 0; ii < element.size(); ii++) {
+    element[ii]->forces = forces;
   }
 }
 

@@ -7,7 +7,7 @@
 #include "Element/Element.hpp"
 #include "Element/ElementMesh.hpp"
 #include "Element/ElementHex.hpp"
-
+#include <iostream>
 //node index
 #define IX(ii,jj,kk) ( (ii) * NY * NZ + (jj) * NZ + kk)
 
@@ -49,7 +49,7 @@ ElementMesh::CreateGrid(int nx, int ny, int nz)
       }
     }
   }
-  u = nodes;
+  mesh->u = mesh->nodes;
   for (int ii = 0; ii < nx; ii++) {
     for (int jj = 0; jj < ny; jj++) {
       for (int kk = 0; kk < nz; kk++) {
